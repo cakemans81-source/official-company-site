@@ -589,4 +589,93 @@ body {
     position: sticky;
     top: 0;
   }
+
+  /* Compact Mobile Grids */
+  .service-grid,
+  .equipment-grid,
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem;
+  }
+
+  .service-card,
+  .equipment-card,
+  .cert-card {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .service-card h3,
+  .equipment-card h4,
+  .cert-card h4 {
+    font-size: 0.95rem !important;
+  }
+
+  .service-card p,
+  .equipment-card p,
+  .cert-card p {
+    font-size: 0.75rem !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Horizontal Scroll for Process */
+  .process-flow {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+    gap: 1.5rem !important;
+  }
+
+  .process-step {
+    min-width: 100px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem;
+  }
+
+  .cta-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-banner {
+    padding: 50px 0;
+  }
+}
+
+/* Floating Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  background: var(--primary-hover);
 }

@@ -9,6 +9,7 @@ import {
   Zap,
   CheckCircle2,
   ChevronRight,
+  ChevronUp,
   MapPin,
   Phone,
   Mail,
@@ -35,13 +36,23 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setShowTopBtn(window.scrollY > 500);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const portfolioItems = [
     { title: '항공 시트 (Aviation Seats)', category: '항공', id: 1 },
@@ -399,8 +410,17 @@ function App() {
             © {new Date().getFullYear()} (주)이루. All rights reserved. | SINCE 2022
           </div>
         </div>
-      </footer >
-    </div >
+      </footer>
+
+      {/* Floating Back to Top Button */}
+      <button
+        className={`back-to-top ${showTopBtn ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        <ChevronUp size={24} />
+      </button>
+    </div>
   );
 }
 
