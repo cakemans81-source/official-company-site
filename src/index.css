@@ -179,13 +179,13 @@ body {
 
 /* Hero Section */
 .hero {
-  height: 60vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 120px 20px 20px;
   background: #fff;
 }
 
@@ -210,14 +210,15 @@ body {
   color: #555;
   max-width: 850px;
   line-height: 1.7;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 /* Category Filters */
 .category-container {
   display: flex;
   gap: 15px;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .cat-btn {
@@ -243,7 +244,7 @@ body {
 
 /* Portfolio Grid */
 .portfolio {
-  padding: 30px 40px 100px;
+  padding: 0 40px 100px;
   max-width: 1600px;
   margin: 0 auto;
 }
