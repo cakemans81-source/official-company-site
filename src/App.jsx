@@ -104,7 +104,19 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero">
-        <div className="container">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-robotic-arm-moving-in-a-factory-31610-large.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
+
+        <div className="container" style={{ position: 'relative', zIndex: '1' }}>
           <span className="hero-tag">PREMIUM MOCKUP & SEAT SOLUTION</span>
           <h1>
             초대형 기술의 완성,<br />
@@ -157,10 +169,10 @@ function App() {
             <ChevronRight className="card-arrow" />
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Partners Section (Horizontal Scroll on Mobile) */}
-      <section className="container" style={{ padding: '60px 0', borderTop: '1px solid var(--border)' }}>
+      < section className="container" style={{ padding: '60px 0', borderTop: '1px solid var(--border)' }}>
         <div className="section-title" style={{ marginBottom: '3rem' }}>
           <span style={{ color: 'var(--primary)', fontSize: '0.85rem', fontWeight: '800', letterSpacing: '0.1em' }}>TRUSTED BY</span>
           <h2 style={{ fontSize: '1.8rem', marginTop: '0.5rem' }}>글로벌 리딩 기업들의 기술 파트너</h2>
@@ -174,10 +186,10 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Vision Section */}
-      <section id="about" className="container" style={{ padding: '100px 0' }}>
+      < section id="about" className="container" style={{ padding: '100px 0' }}>
         <div className="vision-layout">
           <div className="vision-content">
             <span style={{ color: 'var(--primary)', fontWeight: '700', fontSize: '0.9rem' }}>ABOUT IRU</span>
@@ -216,10 +228,10 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Tech Process Section */}
-      <section id="tech" className="features" style={{ background: 'rgba(255,255,255,0.02)' }}>
+      < section id="tech" className="features" style={{ background: 'rgba(255,255,255,0.02)' }}>
         <div className="container">
           <div className="section-title">
             <h2>제조 혁신을 위한 핵심 공정</h2>
@@ -244,10 +256,10 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="container" style={{ padding: '80px 0' }}>
+      < section id="portfolio" className="container" style={{ padding: '80px 0' }}>
         <div className="section-title">
           <h2>프로젝트 실적</h2>
           <div className="portfolio-tabs">
@@ -276,10 +288,10 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+      </section >
 
       {/* Infra Section */}
-      <section id="infra" style={{ background: 'rgba(255,255,255,0.02)', padding: '80px 0' }}>
+      < section id="infra" style={{ background: 'rgba(255,255,255,0.02)', padding: '80px 0' }}>
         <div className="container">
           <div className="section-title">
             <h2>주요 제조 인프라</h2>
@@ -309,10 +321,10 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* CTA Banner Section */}
-      <section className="cta-banner">
+      < section className="cta-banner" >
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 className="cta-title">압도적인 기술력을 지금 경험하세요</h2>
           <p className="cta-desc">
@@ -322,10 +334,10 @@ function App() {
             견격 및 비즈니스 문의하기
           </a>
         </div>
-      </section>
+      </section >
 
       {/* Certification Section */}
-      <section id="cert" className="container" style={{ padding: '80px 0' }}>
+      < section id="cert" className="container" style={{ padding: '80px 0' }}>
         <div className="section-title">
           <h2>품질 및 기술 인증</h2>
         </div>
@@ -346,10 +358,10 @@ function App() {
             <p>과학기술정보통신부 정식 인가 연구소</p>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer id="contact" className="footer">
+      < footer id="contact" className="footer" >
         <div className="container">
           <div className="footer-grid">
             <div className="footer-info">
@@ -387,8 +399,8 @@ function App() {
             © {new Date().getFullYear()} (주)이루. All rights reserved. | SINCE 2022
           </div>
         </div>
-      </footer>
-    </div>
+      </footer >
+    </div >
   );
 }
 
