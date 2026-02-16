@@ -179,7 +179,7 @@ body {
 
 /* Hero Section */
 .hero {
-  height: 85vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -243,7 +243,7 @@ body {
 
 /* Portfolio Grid */
 .portfolio {
-  padding: 100px 40px;
+  padding: 30px 40px 100px;
   max-width: 1600px;
   margin: 0 auto;
 }
