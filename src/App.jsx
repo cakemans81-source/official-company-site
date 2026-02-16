@@ -92,7 +92,9 @@ function App() {
         onMouseLeave={() => setIsHeaderHovered(false)}
       >
         <div className="nav-container">
-          <a href="/" className="logo">이루 로고</a>
+          <a href="/" className="logo">
+            <img src="/logo.png" alt="IRU Logo" style={{ height: '50px', width: 'auto', display: 'block' }} />
+          </a>
 
           <nav className="nav-center">
             {Object.keys(menuData).map((key) => (
@@ -167,7 +169,9 @@ function App() {
       {/* Minimal Footer */}
       <footer className="footer" id="footer">
         <div className="footer-content">
-          <div className="logo" style={{ fontSize: '1.2rem', fontWeight: '800' }}>이루 로고</div>
+          <div className="logo">
+            <img src="/logo.png" alt="IRU Logo" style={{ height: '40px', width: 'auto', marginBottom: '1.5rem', display: 'block' }} />
+          </div>
           <div style={{ color: '#888', fontSize: '0.85rem', textAlign: 'right' }}>
             <p>(주)이루 | 대표이사: 이광수</p>
             <p>본사: 경기도 화성시 팔탄면 밤뒤길 9 (A, B동)</p>
