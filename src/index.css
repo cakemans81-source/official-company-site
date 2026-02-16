@@ -68,7 +68,6 @@ body {
 .header.is-hovered .logo img {
   mix-blend-mode: multiply;
   filter: brightness(1.2);
-  /* 로고 색상을 조금 더 선명하게 */
 }
 
 .nav-center {
@@ -306,10 +305,168 @@ body {
   align-items: flex-start;
 }
 
-/* Hide previously requested components that don't fit the new simple aesthetic */
+/* Hide previously requested components */
 .partners,
 .infra,
 .tech,
 .cta-banner {
   display: none !important;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  z-index: 1001;
+  transition: color 0.3s;
+}
+
+.header.is-hovered .mobile-menu-btn {
+  color: var(--text-light);
+}
+
+.mobile-only-links,
+.mobile-submenu {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .header {
+    height: 70px;
+  }
+
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* Logo size on mobile */
+  .logo img {
+    height: 35px;
+  }
+
+  /* Sidebar Navigation for Mobile */
+  .nav-center.mobile-active {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 100px 30px;
+    transform: translateX(0);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    left: auto;
+  }
+
+  .nav-main-item {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .nav-main-link {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-dark) !important;
+  }
+
+  .mobile-submenu {
+    display: block;
+    list-style: none;
+    padding-left: 10px;
+    border-left: 2px solid var(--primary);
+  }
+
+  .mobile-submenu a {
+    text-decoration: none;
+    color: #888;
+    font-size: 0.9rem;
+    padding: 8px 0;
+    display: block;
+  }
+
+  .mobile-only-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-only-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  /* Hero adjustments */
+  .hero {
+    min-height: 50vh;
+    padding: 100px 20px 40px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .cat-btn {
+    padding: 10px 30px;
+    font-size: 0.85rem;
+  }
+
+  /* Portfolio Grid 2 Columns */
+  .portfolio {
+    padding: 20px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .nav-center.mobile-active {
+    width: 100%;
+  }
 }

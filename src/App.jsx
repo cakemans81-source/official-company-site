@@ -83,8 +83,10 @@ function App() {
     ]
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="app-container">
+    <div className={`app-container ${isMenuOpen ? 'menu-open' : ''}`}>
       {/* Header */}
       <header
         className={`header ${scrolled ? 'scrolled' : ''} ${isHeaderHovered ? 'is-hovered' : ''}`}
@@ -93,21 +95,34 @@ function App() {
       >
         <div className="nav-container">
           <a href="/" className="logo">
-            <img src="/logo.png" alt="IRU Logo" style={{ height: '50px', width: 'auto', display: 'block' }} />
+            <img src="/logo.png" alt="IRU Logo" />
           </a>
 
-          <nav className="nav-center">
+          <nav className={`nav-center ${isMenuOpen ? 'mobile-active' : ''}`}>
             {Object.keys(menuData).map((key) => (
               <div key={key} className="nav-main-item">
                 <span className="nav-main-link">{key}</span>
+                <ul className="mobile-submenu">
+                  {menuData[key].map((link, idx) => (
+                    <li key={idx}><a href={link.href} onClick={() => setIsMenuOpen(false)}>{link.name}</a></li>
+                  ))}
+                </ul>
               </div>
             ))}
+            <div className="mobile-only-links">
+              <a href="#join" onClick={() => setIsMenuOpen(false)}>JOIN US</a>
+              <a href="#eng" onClick={() => setIsMenuOpen(false)}>ENGLISH</a>
+            </div>
           </nav>
 
           <div className="nav-right">
             <a href="#join">JOIN US</a>
             <a href="#eng">ENG</a>
           </div>
+
+          <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
 
           <div className="megamenu-bg">
             <div className="megamenu-content">
