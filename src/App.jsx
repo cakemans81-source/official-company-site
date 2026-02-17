@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, Mail, MapPin, Menu, X, ChevronRight } from 'lucide-react';
 
 // 🎨 IRU Premium SVG Logo Component
 const Logo = ({ className = "", height = 42 }) => (
@@ -29,6 +29,10 @@ const Logo = ({ className = "", height = 42 }) => (
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('전체');
+
+  const categories = ['전체', 'Full Seat', 'Stitching', 'Material', 'Prototype'];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,18 +62,33 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className={`app ${menuOpen ? 'menu-open' : ''}`}>
       {/* ═══════ NAV ═══════ */}
       <nav className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
           <a href="#" className="nav-logo">
-            <Logo height={scrolled ? 32 : 40} />
+            <Logo height={scrolled ? 32 : 38} />
           </a>
-          <div className="nav-links">
+
+          <div className="nav-links desktop-only">
             <a href="#about">About Us</a>
             <a href="#gallery">Portfolio</a>
             <a href="#technology">Technology</a>
             <a href="#inquiry" className="nav-cta">견적문의</a>
+          </div>
+
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`mobile-nav ${menuOpen ? 'active' : ''}`}>
+          <div className="mobile-nav-links">
+            <a href="#about" onClick={() => setMenuOpen(false)}>About Us <ChevronRight size={18} /></a>
+            <a href="#gallery" onClick={() => setMenuOpen(false)}>Portfolio <ChevronRight size={18} /></a>
+            <a href="#technology" onClick={() => setMenuOpen(false)}>Technology <ChevronRight size={18} /></a>
+            <a href="#inquiry" className="mobile-cta" onClick={() => setMenuOpen(false)}>견적문의</a>
           </div>
         </div>
       </nav>
@@ -78,8 +97,8 @@ function App() {
       <section className="hero">
         <div className="hero-bg"></div>
         <div className="hero-content">
-          <Logo height={100} className="hero-logo-large" style={{ marginBottom: '24px' }} />
-          <h1>Precision Seat<br /><em>Mockup</em> Studio</h1>
+          <Logo height={scrolled ? 60 : 80} className="hero-logo-large" style={{ marginBottom: '24px' }} />
+          <h1>Precision Seat<br /><em className="accent-text">Mockup</em> Studio</h1>
           <div className="hero-tagline">LET'S MAKE IT HAPPEN — SINCE 2022</div>
           <p className="hero-desc">
             자동차 시트의 완벽한 형상과 질감을 구현합니다.<br />
@@ -95,48 +114,53 @@ function App() {
         </div>
       </section>
 
-      {/* ═══════ MARQUEE ═══════ */}
-      <div className="marquee-section">
-        <div className="marquee-track">
-          {[1, 2].map((i) => (
-            <div key={i} className="marquee-text">
-              IRU MOCKUP STUDIO <span className="dot">◆</span> SEAT DESIGN <span className="dot">◆</span> PROTOTYPE <span className="dot">◆</span> PRECISION CRAFT <span className="dot">◆</span>
-              IRU MOCKUP STUDIO <span className="dot">◆</span> SEAT DESIGN <span className="dot">◆</span> PROTOTYPE <span className="dot">◆</span> PRECISION CRAFT <span className="dot">◆</span>
-            </div>
-          ))}
+      {/* ═══════ CATEGORY CHIPS ═══════ */}
+      <div className="category-section">
+        <div className="container">
+          <div className="category-scroll">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`category-chip ${activeTab === cat ? 'active' : ''}`}
+                onClick={() => setActiveTab(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* ═══════ ABOUT ═══════ */}
-      <section className="about" id="about" style={{ padding: '140px 0' }}>
+      <section className="about" id="about">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '80px', alignItems: 'center' }}>
+          <div className="about-grid">
             <div className="reveal">
-              <div style={{ aspectRatio: '3/4', background: 'var(--bg-card)', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', background: 'linear-gradient(160deg, #1a1a1a, #111)' }}>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>공장 / 작업 현장 이미지</span>
+              <div className="about-image-card">
+                <div className="image-placeholder">
+                  <span className="placeholder-text">공장 / 작업 현장 이미지</span>
                 </div>
-                <div style={{ position: 'absolute', bottom: '-24px', right: '-24px', width: '120px', height: '120px', background: 'var(--accent)', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 600, color: '#fff' }}>22</div>
-                  <div style={{ fontSize: '0.6rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>Since</div>
+                <div className="since-badge">
+                  <div className="year">22</div>
+                  <div className="label">Since</div>
                 </div>
               </div>
             </div>
-            <div className="reveal reveal-delay-2">
+            <div className="reveal reveal-delay-2 about-text-side">
               <div className="section-label">Who We Are</div>
               <h2 className="section-title">자동차 시트 목업을<br />브랜드화 하는 전문 스튜디오</h2>
               <p className="section-desc">
                 (주)이루는 완성차 업체와 부품사를 위한 프리미엄 시트 목업 솔루션을 제공합니다.
                 가죽의 질감, 스티치의 정밀함, 폼의 곡면까지 — 실제와 동일한 목업으로 고객의 개발 과정을 완성합니다.
               </p>
-              <div style={{ display: 'flex', gap: '48px', marginTop: '40px', paddingTop: '40px', borderTop: '1px solid var(--border)' }}>
+              <div className="stats-container">
                 <div className="stat-item">
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 600, color: 'var(--text-primary)' }}>500<span style={{ color: 'var(--accent-light)' }}>+</span></div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>누적 프로젝트</div>
+                  <div className="stat-value">500<span className="plus">+</span></div>
+                  <div className="stat-label">누적 프로젝트</div>
                 </div>
                 <div className="stat-item">
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 600, color: 'var(--text-primary)' }}>99<span style={{ color: 'var(--accent-light)' }}>%</span></div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>납기 준수율</div>
+                  <div className="stat-value">99<span className="plus">%</span></div>
+                  <div className="stat-label">납기 준수율</div>
                 </div>
               </div>
             </div>
@@ -147,7 +171,7 @@ function App() {
       {/* ═══════ GALLERY ═══════ */}
       <section className="gallery" id="gallery">
         <div className="container">
-          <div className="gallery-header" style={{ marginBottom: '64px' }}>
+          <div className="gallery-header">
             <div className="reveal">
               <div className="section-label">Our Portfolio</div>
               <h2 className="section-title">가죽의 결과 스티치의 정밀함,<br />시각적 완성도를 담은 갤러리</h2>
@@ -157,8 +181,8 @@ function App() {
           <div className="gallery-grid">
             <div className="gallery-card featured reveal">
               <div className="gallery-card-image">
-                <span style={{ fontSize: '3rem', opacity: 0.1 }}>💺</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>FULL SEAT MOCKUP</span>
+                <span className="icon">💺</span>
+                <span className="image-label">FULL SEAT MOCKUP</span>
               </div>
               <div className="gallery-card-overlay">
                 <span className="tag">Seat Mockup · Full Set</span>
@@ -167,8 +191,8 @@ function App() {
             </div>
             <div className="gallery-card tall reveal reveal-delay-1">
               <div className="gallery-card-image">
-                <span style={{ fontSize: '3rem', opacity: 0.1 }}>🪡</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>STITCH DETAIL</span>
+                <span className="icon">🪡</span>
+                <span className="image-label">STITCH DETAIL</span>
               </div>
               <div className="gallery-card-overlay">
                 <span className="tag">Detail · Stitching</span>
@@ -177,8 +201,8 @@ function App() {
             </div>
             <div className="gallery-card reveal reveal-delay-2">
               <div className="gallery-card-image">
-                <span style={{ fontSize: '3rem', opacity: 0.1 }}>🔲</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>LEATHER GRAIN</span>
+                <span className="icon">🔲</span>
+                <span className="image-label">LEATHER GRAIN</span>
               </div>
               <div className="gallery-card-overlay">
                 <span className="tag">Material · Leather</span>
@@ -187,8 +211,8 @@ function App() {
             </div>
             <div className="gallery-card wide reveal reveal-delay-2">
               <div className="gallery-card-image">
-                <span style={{ fontSize: '3rem', opacity: 0.1 }}>⚙️</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>MECHANISM</span>
+                <span className="icon">⚙️</span>
+                <span className="image-label">MECHANISM</span>
               </div>
               <div className="gallery-card-overlay">
                 <span className="tag">Functional · Prototype</span>
@@ -200,11 +224,11 @@ function App() {
       </section>
 
       {/* ═══════ CTA ═══════ */}
-      <section className="cta" id="inquiry" style={{ padding: '120px 0', textAlign: 'center', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border)' }}>
+      <section className="cta" id="inquiry">
         <div className="container">
           <div className="section-label reveal">Contact Us</div>
           <h2 className="section-title reveal">프로젝트를 함께<br />시작하세요</h2>
-          <div className="cta-buttons reveal" style={{ marginTop: '48px', display: 'flex', gap: '16px', justifyContent: 'center' }}>
+          <div className="cta-buttons reveal">
             <a href="#" className="btn-fill">견적 요청하기 <ArrowRight size={16} /></a>
             <a href="tel:010-0000-0000" className="btn-ghost">📞 전화 문의</a>
           </div>
@@ -214,18 +238,18 @@ function App() {
       {/* ═══════ FOOTER ═══════ */}
       <footer className="footer">
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
-            <div>
-              <Logo height={40} className="footer-logo" style={{ opacity: 0.6, marginBottom: '20px' }} />
-              <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.</p>
+          <div className="footer-inner">
+            <div className="footer-brand">
+              <Logo height={36} className="footer-logo" />
+              <p className="footer-copy-text">자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.</p>
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ display: 'flex', gap: '20px', marginBottom: '10px', color: 'var(--text-secondary)' }}>
+            <div className="footer-contacts">
+              <div className="social-links">
                 <a href="#"><Mail size={18} /></a>
                 <a href="#"><Phone size={18} /></a>
                 <a href="#"><MapPin size={18} /></a>
               </div>
-              <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>© 2026 (주)이루 IRU. All rights reserved.</p>
+              <p className="copyright">© 2026 (주)이루 IRU. All rights reserved.</p>
             </div>
           </div>
         </div>
