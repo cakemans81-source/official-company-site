@@ -31,6 +31,7 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('전체');
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
 
   const categories = ['전체', 'Full Seat', 'Stitching', 'Material', 'Prototype'];
 
@@ -74,7 +75,7 @@ function App() {
             <a href="#about">About Us</a>
             <a href="#gallery">Portfolio</a>
             <a href="#technology">Technology</a>
-            <a href="#inquiry" className="nav-cta">견적문의</a>
+            <button onClick={() => setShowInquiryModal(true)} className="nav-cta">견적문의</button>
           </div>
 
           <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
@@ -88,7 +89,7 @@ function App() {
             <a href="#about" onClick={() => setMenuOpen(false)}>About Us <ChevronRight size={18} /></a>
             <a href="#gallery" onClick={() => setMenuOpen(false)}>Portfolio <ChevronRight size={18} /></a>
             <a href="#technology" onClick={() => setMenuOpen(false)}>Technology <ChevronRight size={18} /></a>
-            <a href="#inquiry" className="mobile-cta" onClick={() => setMenuOpen(false)}>견적문의</a>
+            <button className="mobile-cta" onClick={() => { setMenuOpen(false); setShowInquiryModal(true); }}>견적문의</button>
           </div>
         </div>
       </nav>
@@ -219,11 +220,38 @@ function App() {
           <div className="section-label reveal">Contact Us</div>
           <h2 className="section-title reveal">프로젝트를 함께<br />시작하세요</h2>
           <div className="cta-buttons reveal">
-            <a href="#" className="btn-fill">견적 요청하기 <ArrowRight size={16} /></a>
-            <a href="tel:010-0000-0000" className="btn-ghost">📞 전화 문의</a>
+            <button onClick={() => setShowInquiryModal(true)} className="btn-fill">이메일 견적 문의 <ArrowRight size={16} /></button>
+            <a href="tel:821033295729" className="btn-ghost">📞 전화 문의</a>
           </div>
         </div>
       </section>
+
+      {/* ═══════ INQUIRY MODAL ═══════ */}
+      <div className={`modal-overlay ${showInquiryModal ? 'active' : ''}`} onClick={() => setShowInquiryModal(false)}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <button className="modal-close" onClick={() => setShowInquiryModal(false)}><X size={24} /></button>
+          <div className="modal-header">
+            <div className="modal-icon"><Mail size={32} /></div>
+            <h3 className="modal-title">견적 및 프로젝트 문의</h3>
+            <p className="modal-desc">(주)이루는 대표님의 비즈니스를 위한 최상의 목업을 제안합니다.</p>
+          </div>
+          <div className="modal-info-list">
+            <a href="mailto:iru@iru.co.kr" className="modal-info-item">
+              <span className="modal-info-label">E-MAIL ADDRESS</span>
+              <span className="modal-info-value">iru@iru.co.kr</span>
+            </a>
+            <a href="tel:821033295729" className="modal-info-item">
+              <span className="modal-info-label">CONTACT 01 (MANAGER)</span>
+              <span className="modal-info-value">+82 10-3329-5729</span>
+            </a>
+            <a href="tel:821050428788" className="modal-info-item">
+              <span className="modal-info-label">CONTACT 02 (DIRECTOR)</span>
+              <span className="modal-info-value">+82 10-5042-8788</span>
+            </a>
+          </div>
+          <p className="modal-copy-hint">클릭 시 이메일 발송 또는 전화 연결이 가능합니다.</p>
+        </div>
+      </div>
 
       {/* ═══════ FOOTER ═══════ */}
       <footer className="footer">
