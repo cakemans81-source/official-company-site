@@ -679,6 +679,27 @@ ul {
   margin-bottom: 6px;
 }
 
+/* ═══════ 프리미엄 포커스 마스크 (배경 가리기) ═══════ */
+.gallery-card-image.focus-mask::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, rgba(10, 10, 10, 0.85) 75%, rgba(10, 10, 10, 0.98) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gallery-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.gallery-card:hover .gallery-card-image img {
+  transform: scale(1.1);
+}
+
 /* ═══════ 갤러리/카드 UI 고도화 ═══════ */
 .gallery-header {
   margin-bottom: 64px;

@@ -180,43 +180,43 @@ function App() {
 
           <div className="gallery-grid">
             <div className="gallery-card featured reveal">
-              <div className="gallery-card-image">
-                <span className="icon">💺</span>
-                <span className="image-label">FULL SEAT MOCKUP</span>
+              <div className="gallery-card-image focus-mask">
+                <img src="/mobed.jpg" alt="Hyundai MobED Mockup" />
+                <span className="image-label">ROBOTICS PLATFORM MOCKUP</span>
               </div>
               <div className="gallery-card-overlay">
-                <span className="tag">Seat Mockup · Full Set</span>
-                <span className="title">프리미엄 시트 목업 — 풀 세트</span>
+                <span className="tag">Hyundai Motor Group · Robotics Lab</span>
+                <span className="title">현대자동차 MobED — 외관 목업</span>
               </div>
             </div>
             <div className="gallery-card tall reveal reveal-delay-1">
-              <div className="gallery-card-image">
-                <span className="icon">🪡</span>
-                <span className="image-label">STITCH DETAIL</span>
+              <div className="gallery-card-image focus-mask">
+                <img src="/pbv5_front.jpg" alt="Kia PBV5 1st Row Seat" />
+                <span className="image-label">FUTURE MOBILITY SEAT (1st ROW)</span>
               </div>
               <div className="gallery-card-overlay">
-                <span className="tag">Detail · Stitching</span>
-                <span className="title">더블 스티치 클로즈업</span>
+                <span className="tag">Kia Motors · PBV5 Project</span>
+                <span className="title">기아 PBV5 전용 시트 (1열)</span>
               </div>
             </div>
             <div className="gallery-card reveal reveal-delay-2">
               <div className="gallery-card-image">
-                <span className="icon">🔲</span>
-                <span className="image-label">LEATHER GRAIN</span>
+                <span className="icon">🪡</span>
+                <span className="image-label">PRECISION STITCH</span>
               </div>
               <div className="gallery-card-overlay">
-                <span className="tag">Material · Leather</span>
-                <span className="title">천연가죽 텍스처</span>
+                <span className="tag">Craftsmanship · Detail</span>
+                <span className="title">정밀 스티칭 디테일</span>
               </div>
             </div>
             <div className="gallery-card wide reveal reveal-delay-2">
-              <div className="gallery-card-image">
-                <span className="icon">⚙️</span>
-                <span className="image-label">MECHANISM</span>
+              <div className="gallery-card-image focus-mask">
+                <img src="/pbv5_rear.jpg" alt="Kia PBV5 3rd Row Seat" />
+                <span className="image-label">FUTURE MOBILITY SEAT (3rd ROW)</span>
               </div>
               <div className="gallery-card-overlay">
-                <span className="tag">Functional · Prototype</span>
-                <span className="title">가변 메커니즘 시제품</span>
+                <span className="tag">Kia Motors · PBV5 Project</span>
+                <span className="title">기아 PBV5 전용 시트 (3열)</span>
               </div>
             </div>
           </div>
