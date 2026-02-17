@@ -63,7 +63,7 @@ function App() {
       <nav className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
           <a href="#" className="nav-logo">
-            <img src="/logo.png" alt="(주)이루 IRU" style={{ height: scrolled ? '32px' : '40px', transition: 'all 0.3s' }} />
+            <Logo height={scrolled ? 32 : 40} />
           </a>
           <div className="nav-links">
             <a href="#about">About Us</a>
@@ -78,7 +78,7 @@ function App() {
       <section className="hero">
         <div className="hero-bg"></div>
         <div className="hero-content">
-          <img src="/logo.png" alt="IRU" className="hero-logo-large" style={{ height: '80px', marginBottom: '24px' }} />
+          <Logo height={100} className="hero-logo-large" style={{ marginBottom: '24px' }} />
           <h1>Precision Seat<br /><em>Mockup</em> Studio</h1>
           <div className="hero-tagline">LET'S MAKE IT HAPPEN — SINCE 2022</div>
           <p className="hero-desc">
