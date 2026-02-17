@@ -1,196 +1,206 @@
-import React, { useState, useEffect } from 'react';
-import {
-  ArrowRight,
-  ChevronRight,
-  ChevronUp,
-  X,
-  Menu
-} from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 80);
     };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      elements.forEach((el) => observer.unobserve(el));
+    };
   }, []);
 
-  const portfolioItems = [
-    {
-      title: '항공 시트 (Aviation Seats)',
-      category: '항공',
-      id: 1,
-      img: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80',
-      desc: '항공기 비즈니스석 및 퍼스트 클래스 전용 디자인 시트 목업 제작'
-    },
-    {
-      title: 'PBV5 디자인 커스텀 시트',
-      category: '자동차',
-      id: 2,
-      img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80',
-      desc: '미래형 목적 기반 모빌리티 전용 1열 디자인 및 기능 구현'
-    },
-    {
-      title: 'CES 전시 컨셉 모델',
-      category: '전시',
-      id: 3,
-      img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80',
-      desc: '글로벌 테크 전시회용 고정밀 하우징 및 실감형 컨셉 모델'
-    },
-    {
-      title: '모베드(Mobed) 로봇 목업',
-      category: '로봇',
-      id: 4,
-      img: 'https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80',
-      desc: '현대자동차 모베드 플랫폼의 정밀 외관 및 구동 메커니즘 시제작'
-    },
-    {
-      title: '디지털 콕핏 실감 모델',
-      category: '자동차',
-      id: 5,
-      img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80',
-      desc: '실제 주행 환경을 구현한 디지털 콕핏 내장재 및 디스플레이 목업'
-    },
-    {
-      title: '자동차 도어 트림 시제품',
-      category: '부품',
-      id: 6,
-      img: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80',
-      desc: '복합 소재를 활용한 초경량 자동차 도어 트림 시제작'
-    },
-  ];
-
-  const filteredPortfolio = activeCategory === 'All'
-    ? portfolioItems
-    : portfolioItems.filter(item => item.category === activeCategory);
-
-  const menuData = {
-    COMPANY: [
-      { name: 'ABOUT', href: '#company' },
-      { name: 'CAREERS', href: '#company' },
-      { name: 'CONTACT', href: '#company' },
-    ],
-    PROJECTS: [
-      { name: '자동차', href: '#projects' },
-      { name: '항공', href: '#projects' },
-      { name: '전시', href: '#projects' },
-      { name: '부품', href: '#projects' },
-    ]
-  };
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <div className={`app-container ${isMenuOpen ? 'menu-open' : ''}`}>
-      {/* Header */}
-      <header
-        className={`header ${scrolled ? 'scrolled' : ''} ${isHeaderHovered ? 'is-hovered' : ''}`}
-        onMouseEnter={() => setIsHeaderHovered(true)}
-        onMouseLeave={() => setIsHeaderHovered(false)}
-      >
-        <div className="nav-container">
-          <a href="/" className="logo">
-            <img src="/logo.png" alt="IRU Logo" />
+    <div className="app">
+      {/* ═══════ NAV ═══════ */}
+      <nav className={`header ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container nav-inner">
+          <a href="#" className="nav-logo">
+            <img src="/logo.png" alt="(주)이루 IRU" style={{ height: scrolled ? '32px' : '40px', transition: 'all 0.3s' }} />
           </a>
-
-          <nav className={`nav-center ${isMenuOpen ? 'mobile-active' : ''}`}>
-            {Object.keys(menuData).map((key) => (
-              <div key={key} className="nav-main-item">
-                <span className="nav-main-link">{key}</span>
-                <ul className="mobile-submenu">
-                  {menuData[key].map((link, idx) => (
-                    <li key={idx}><a href={link.href} onClick={() => setIsMenuOpen(false)}>{link.name}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div className="mobile-only-links">
-              <a href="#join" onClick={() => setIsMenuOpen(false)}>JOIN US</a>
-              <a href="#eng" onClick={() => setIsMenuOpen(false)}>ENGLISH</a>
-            </div>
-          </nav>
-
-          <div className="nav-right">
-            <a href="#join">JOIN US</a>
-            <a href="#eng">ENG</a>
-          </div>
-
-          <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-
-          <div className="megamenu-bg">
-            <div className="megamenu-content">
-              {Object.entries(menuData).map(([title, links]) => (
-                <div key={title} className="megamenu-column">
-                  <h3 className="megamenu-title">{title}</h3>
-                  <ul className="submenu-list">
-                    {links.map((link, idx) => (
-                      <li key={idx} className="submenu-item">
-                        <a href={link.href} className="submenu-link">{link.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+          <div className="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#gallery">Portfolio</a>
+            <a href="#technology">Technology</a>
+            <a href="#inquiry" className="nav-cta">견적문의</a>
           </div>
         </div>
-      </header>
+      </nav>
 
-      {/* Hero Section */}
+      {/* ═══════ HERO ═══════ */}
       <section className="hero">
-        <div className="container">
-          <span className="hero-tag">PREMIUM MOCKUP & SEAT SOLUTION 자동차 디자인모델 특화</span>
-          <h1 style={{ whiteSpace: 'pre-line' }}>
-            초대형 기술의 완성,{'\n'}
-            <span style={{ color: 'var(--primary)' }}>실감형 Mockup 전문가</span>
-          </h1>
-          <p>
-            우리는 상상을 현실로 만드는 가공의 한계를 넘습니다.{'\n'}
-            (주)이루는 단순한 목업을 넘어, 실제 동작이 가능한 완성도 높은 시제품을 구현합니다.
+        <div className="hero-bg"></div>
+        <div className="hero-content">
+          <img src="/logo.png" alt="IRU" className="hero-logo-large" style={{ height: '80px', marginBottom: '24px' }} />
+          <h1>Precision Seat<br /><em>Mockup</em> Studio</h1>
+          <div className="hero-tagline">LET'S MAKE IT HAPPEN — SINCE 2022</div>
+          <p className="hero-desc">
+            자동차 시트의 완벽한 형상과 질감을 구현합니다.<br />
+            가죽의 결, 스티치의 정밀함까지 — 이루의 기술력입니다.
           </p>
-
-          <div className="category-container">
-            {['All', '자동차', '항공', '전시', '부품'].map((cat) => (
-              <button
-                key={cat}
-                className={`cat-btn ${activeCategory === cat ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="hero-buttons">
+            <a href="#inquiry" className="btn-fill">
+              견적 문의하기
+              <ArrowRight size={16} />
+            </a>
+            <a href="#gallery" className="btn-ghost">갤러리 보기</a>
           </div>
         </div>
       </section>
 
-      {/* Portfolio Grid */}
-      <section className="portfolio" id="projects">
-        <div className="portfolio-grid">
-          {filteredPortfolio.map((item) => (
-            <div key={item.id} className="project-card">
-              <img src={item.img} alt={item.title} />
+      {/* ═══════ MARQUEE ═══════ */}
+      <div className="marquee-section">
+        <div className="marquee-track">
+          {[1, 2].map((i) => (
+            <div key={i} className="marquee-text">
+              IRU MOCKUP STUDIO <span className="dot">◆</span> SEAT DESIGN <span className="dot">◆</span> PROTOTYPE <span className="dot">◆</span> PRECISION CRAFT <span className="dot">◆</span>
+              IRU MOCKUP STUDIO <span className="dot">◆</span> SEAT DESIGN <span className="dot">◆</span> PROTOTYPE <span className="dot">◆</span> PRECISION CRAFT <span className="dot">◆</span>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ═══════ ABOUT ═══════ */}
+      <section className="about" id="about" style={{ padding: '140px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '80px', alignItems: 'center' }}>
+            <div className="reveal">
+              <div style={{ aspectRatio: '3/4', background: 'var(--bg-card)', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', background: 'linear-gradient(160deg, #1a1a1a, #111)' }}>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>공장 / 작업 현장 이미지</span>
+                </div>
+                <div style={{ position: 'absolute', bottom: '-24px', right: '-24px', width: '120px', height: '120px', background: 'var(--accent)', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 600, color: '#fff' }}>22</div>
+                  <div style={{ fontSize: '0.6rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>Since</div>
+                </div>
+              </div>
+            </div>
+            <div className="reveal reveal-delay-2">
+              <div className="section-label">Who We Are</div>
+              <h2 className="section-title">자동차 시트 목업을<br />브랜드화 하는 전문 스튜디오</h2>
+              <p className="section-desc">
+                (주)이루는 완성차 업체와 부품사를 위한 프리미엄 시트 목업 솔루션을 제공합니다.
+                가죽의 질감, 스티치의 정밀함, 폼의 곡면까지 — 실제와 동일한 목업으로 고객의 개발 과정을 완성합니다.
+              </p>
+              <div style={{ display: 'flex', gap: '48px', marginTop: '40px', paddingTop: '40px', borderTop: '1px solid var(--border)' }}>
+                <div className="stat-item">
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 600, color: 'var(--text-primary)' }}>500<span style={{ color: 'var(--accent-light)' }}>+</span></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>누적 프로젝트</div>
+                </div>
+                <div className="stat-item">
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 600, color: 'var(--text-primary)' }}>99<span style={{ color: 'var(--accent-light)' }}>%</span></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>납기 준수율</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Minimal Footer */}
-      <footer className="footer" id="footer">
-        <div className="footer-content">
-          <div className="logo">
-            <img src="/logo.png" alt="IRU Logo" style={{ height: '40px', width: 'auto', marginBottom: '1.5rem', display: 'block' }} />
+      {/* ═══════ GALLERY ═══════ */}
+      <section className="gallery" id="gallery">
+        <div className="container">
+          <div className="gallery-header" style={{ marginBottom: '64px' }}>
+            <div className="reveal">
+              <div className="section-label">Our Portfolio</div>
+              <h2 className="section-title">가죽의 결과 스티치의 정밀함,<br />시각적 완성도를 담은 갤러리</h2>
+            </div>
           </div>
-          <div style={{ color: '#888', fontSize: '0.85rem', textAlign: 'right' }}>
-            <p>(주)이루 | 대표이사: 이광수</p>
-            <p>본사: 경기도 화성시 팔탄면 밤뒤길 9 (A, B동)</p>
-            <p style={{ marginTop: '10px' }}>© {new Date().getFullYear()} IRU. All rights reserved.</p>
+
+          <div className="gallery-grid">
+            <div className="gallery-card featured reveal">
+              <div className="gallery-card-image">
+                <span style={{ fontSize: '3rem', opacity: 0.1 }}>💺</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>FULL SEAT MOCKUP</span>
+              </div>
+              <div className="gallery-card-overlay">
+                <span className="tag">Seat Mockup · Full Set</span>
+                <span className="title">프리미엄 시트 목업 — 풀 세트</span>
+              </div>
+            </div>
+            <div className="gallery-card tall reveal reveal-delay-1">
+              <div className="gallery-card-image">
+                <span style={{ fontSize: '3rem', opacity: 0.1 }}>🪡</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>STITCH DETAIL</span>
+              </div>
+              <div className="gallery-card-overlay">
+                <span className="tag">Detail · Stitching</span>
+                <span className="title">더블 스티치 클로즈업</span>
+              </div>
+            </div>
+            <div className="gallery-card reveal reveal-delay-2">
+              <div className="gallery-card-image">
+                <span style={{ fontSize: '3rem', opacity: 0.1 }}>🔲</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>LEATHER GRAIN</span>
+              </div>
+              <div className="gallery-card-overlay">
+                <span className="tag">Material · Leather</span>
+                <span className="title">천연가죽 텍스처</span>
+              </div>
+            </div>
+            <div className="gallery-card wide reveal reveal-delay-2">
+              <div className="gallery-card-image">
+                <span style={{ fontSize: '3rem', opacity: 0.1 }}>⚙️</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>MECHANISM</span>
+              </div>
+              <div className="gallery-card-overlay">
+                <span className="tag">Functional · Prototype</span>
+                <span className="title">가변 메커니즘 시제품</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ CTA ═══════ */}
+      <section className="cta" id="inquiry" style={{ padding: '120px 0', textAlign: 'center', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border)' }}>
+        <div className="container">
+          <div className="section-label reveal">Contact Us</div>
+          <h2 className="section-title reveal">프로젝트를 함께<br />시작하세요</h2>
+          <div className="cta-buttons reveal" style={{ marginTop: '48px', display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <a href="#" className="btn-fill">견적 요청하기 <ArrowRight size={16} /></a>
+            <a href="tel:010-0000-0000" className="btn-ghost">📞 전화 문의</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ FOOTER ═══════ */}
+      <footer className="footer">
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
+            <div>
+              <Logo height={40} className="footer-logo" style={{ opacity: 0.6, marginBottom: '20px' }} />
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.</p>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ display: 'flex', gap: '20px', marginBottom: '10px', color: 'var(--text-secondary)' }}>
+                <a href="#"><Mail size={18} /></a>
+                <a href="#"><Phone size={18} /></a>
+                <a href="#"><MapPin size={18} /></a>
+              </div>
+              <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>© 2026 (주)이루 IRU. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </footer>
