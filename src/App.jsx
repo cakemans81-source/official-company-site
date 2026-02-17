@@ -189,16 +189,6 @@ function App() {
                 <span className="title">현대자동차 MobED — 외관 목업</span>
               </div>
             </div>
-            <div className="gallery-card tall reveal reveal-delay-1">
-              <div className="gallery-card-image focus-mask">
-                <img src="/pbv5_seat.jpg" alt="Kia PBV5 Interior Seat" />
-                <span className="image-label">FUTURE MOBILITY SEAT (1st ROW)</span>
-              </div>
-              <div className="gallery-card-overlay">
-                <span className="tag">Kia Motors · PBV5 Project</span>
-                <span className="title">기아 PBV5 전용 시트 (1열)</span>
-              </div>
-            </div>
             <div className="gallery-card reveal reveal-delay-2">
               <div className="gallery-card-image">
                 <span className="icon">🪡</span>
@@ -212,11 +202,11 @@ function App() {
             <div className="gallery-card wide reveal reveal-delay-2">
               <div className="gallery-card-image focus-mask">
                 <img src="/pbv5_seat.jpg" alt="Kia PBV5 Interior Seat" />
-                <span className="image-label">FUTURE MOBILITY SEAT (3rd ROW)</span>
+                <span className="image-label">FUTURE MOBILITY SEAT (1st & 3rd ROW)</span>
               </div>
               <div className="gallery-card-overlay">
                 <span className="tag">Kia Motors · PBV5 Project</span>
-                <span className="title">기아 PBV5 전용 시트 (3열)</span>
+                <span className="title">기아 PBV5 전용 시트 (1,3열)</span>
               </div>
             </div>
           </div>
