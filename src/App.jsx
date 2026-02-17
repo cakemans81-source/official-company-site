@@ -191,7 +191,7 @@ function App() {
             </div>
             <div className="gallery-card tall reveal reveal-delay-1">
               <div className="gallery-card-image focus-mask">
-                <img src="/pbv5_front.jpg" alt="Kia PBV5 1st Row Seat" />
+                <img src="/pbv5_seat.jpg" alt="Kia PBV5 Interior Seat" />
                 <span className="image-label">FUTURE MOBILITY SEAT (1st ROW)</span>
               </div>
               <div className="gallery-card-overlay">
@@ -211,7 +211,7 @@ function App() {
             </div>
             <div className="gallery-card wide reveal reveal-delay-2">
               <div className="gallery-card-image focus-mask">
-                <img src="/pbv5_rear.jpg" alt="Kia PBV5 3rd Row Seat" />
+                <img src="/pbv5_seat.jpg" alt="Kia PBV5 Interior Seat" />
                 <span className="image-label">FUTURE MOBILITY SEAT (3rd ROW)</span>
               </div>
               <div className="gallery-card-overlay">
