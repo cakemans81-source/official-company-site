@@ -1,6 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
+// 🎨 IRU Premium SVG Logo Component
+const Logo = ({ className = "", height = 42 }) => (
+  <svg
+    height={height}
+    viewBox="0 0 320 120"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={{ display: 'block' }}
+  >
+    <rect x="10" y="10" width="85" height="100" rx="42.5" stroke="white" strokeWidth="2.8" />
+    <rect x="13" y="13" width="79" height="94" rx="39.5" stroke="#8b6ce7" strokeWidth="1.2" opacity="0.6" />
+    <g transform="translate(28, 30)">
+      <circle cx="6" cy="6" r="4.5" fill="#8b6ce7" />
+      <path d="M6 18V55" stroke="#8b6ce7" strokeWidth="8.5" strokeLinecap="round" />
+      <path d="M25 18V55" stroke="#8b6ce7" strokeWidth="8.5" strokeLinecap="round" />
+      <path d="M25 18C25 18 52 14 52 32C52 46 32 48 24 40" stroke="#8b6ce7" strokeWidth="8.5" strokeLinecap="round" fill="none" />
+      <path d="M38 42L54 55" stroke="#8b6ce7" strokeWidth="8.5" strokeLinecap="round" />
+      <path d="M12 55C12 55 15 65 40 65C62 65 65 55 65 35V18" stroke="#8b6ce7" strokeWidth="7.5" strokeLinecap="round" fill="none" />
+    </g>
+    <text x="115" y="86" fontFamily="Inter, sans-serif" fontSize="82" fontWeight="950" fill="white" letterSpacing="-5">IRU</text>
+    <text x="117" y="26" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="800" fill="white" opacity="1" letterSpacing="0.2">LET'S MAKE IT HAPPEN</text>
+    <text x="117" y="110" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#999" letterSpacing="1.2">SINCE 2022</text>
+  </svg>
+);
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
 
