@@ -97,7 +97,7 @@ function App() {
       <section className="hero">
         <div className="hero-bg"></div>
         <div className="hero-content">
-          <img src="/logo.png" alt="IRU" className="hero-logo-large" style={{ height: scrolled ? '60px' : '80px', marginBottom: '24px', filter: 'brightness(1.2)' }} />
+          <img src="/logo.png" alt="IRU" className="hero-logo-large" style={{ height: scrolled ? '60px' : '80px', marginBottom: '24px' }} />
           <h1>Precision Seat<br /><em className="accent-text">Mockup</em> Studio</h1>
           <div className="hero-tagline">LET'S MAKE IT HAPPEN — SINCE 2022</div>
           <p className="hero-desc">
@@ -240,7 +240,7 @@ function App() {
         <div className="container">
           <div className="footer-inner">
             <div className="footer-brand">
-              <Logo height={36} className="footer-logo" />
+              <img src="/logo.png" alt="IRU" style={{ height: '36px', opacity: 0.8, marginBottom: '20px' }} />
               <p className="footer-copy-text">자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.</p>
             </div>
             <div className="footer-contacts">
