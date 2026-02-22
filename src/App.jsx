@@ -68,6 +68,45 @@ const TRANSLATIONS = {
   }
 };
 
+const PORTFOLIO_DATA = [
+  {
+    id: 1,
+    category: 'Prototype',
+    company: 'Hyundai Motor Group · Robotics Lab',
+    titleKey: 'portfolio-item1-sub',
+    image: '/mobed.jpg',
+    label: 'ROBOTICS PLATFORM MOCKUP',
+    featured: true
+  },
+  {
+    id: 2,
+    category: 'Stitching',
+    company: 'Craftsmanship · Detail',
+    titleKey: 'portfolio-item2-sub',
+    image: null,
+    icon: '🪡',
+    label: 'PRECISION STITCH'
+  },
+  {
+    id: 3,
+    category: 'Full Seat',
+    company: 'Kia Motors · PBV5 Project',
+    titleKey: 'portfolio-item3-sub',
+    image: '/pbv5_seat.jpg',
+    label: 'FUTURE MOBILITY SEAT (1st & 3rd ROW)',
+    wide: true
+  },
+  {
+    id: 4,
+    category: 'Material',
+    company: 'Premium Leather · Texture',
+    titleKey: 'Material Finish Detail',
+    image: null,
+    icon: '💎',
+    label: 'LEATHER TEXTURE ANALYSIS'
+  }
+];
+
 // 🎨 IRU Logo - Using official public/logo.png
 function App() {
   const videoRef = useRef(null);
@@ -79,6 +118,10 @@ function App() {
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
   const categories = [t('filter-all'), 'Full Seat', 'Stitching', 'Material', 'Prototype'];
+
+  const filteredPortfolio = activeTab === '전체'
+    ? PORTFOLIO_DATA
+    : PORTFOLIO_DATA.filter(item => item.category === activeTab);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -116,7 +159,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
       elements.forEach((el) => observer.unobserve(el));
     };
-  }, []);
+  }, [filteredPortfolio]); // Re-observe when items change
 
   const toggleLang = () => {
     setLang(prev => prev === 'ko' ? 'en' : 'ko');
@@ -268,39 +311,30 @@ function App() {
           </div>
 
           <div className="gallery-grid">
-            <div className="gallery-card featured reveal">
-              <div className="gallery-card-image focus-mask">
-                <img src="/mobed.jpg" alt="Hyundai MobED Mockup" />
-                <span className="image-label">ROBOTICS PLATFORM MOCKUP</span>
+            {filteredPortfolio.map((item, idx) => (
+              <div
+                key={item.id}
+                className={`gallery-card ${item.featured ? 'featured' : ''} ${item.wide ? 'wide' : ''} reveal`}
+                style={{ transitionDelay: `${(idx % 3) * 0.1}s` }}
+              >
+                <div className={`gallery-card-image ${item.image ? 'focus-mask' : ''}`}>
+                  {item.image ? (
+                    <img src={item.image} alt={t(item.titleKey)} />
+                  ) : (
+                    <span className="icon">{item.icon}</span>
+                  )}
+                  <span className="image-label">{item.label}</span>
+                </div>
+                <div className="gallery-card-overlay">
+                  <span className="tag">{item.company}</span>
+                  <span className="title">{t(item.titleKey)}</span>
+                </div>
               </div>
-              <div className="gallery-card-overlay">
-                <span className="tag">Hyundai Motor Group · Robotics Lab</span>
-                <span className="title">{t('portfolio-item1-sub')}</span>
-              </div>
-            </div>
-            <div className="gallery-card reveal reveal-delay-2">
-              <div className="gallery-card-image">
-                <span className="icon">🪡</span>
-                <span className="image-label">PRECISION STITCH</span>
-              </div>
-              <div className="gallery-card-overlay">
-                <span className="tag">Craftsmanship · Detail</span>
-                <span className="title">{t('portfolio-item2-sub')}</span>
-              </div>
-            </div>
-            <div className="gallery-card wide reveal reveal-delay-2">
-              <div className="gallery-card-image focus-mask">
-                <img src="/pbv5_seat.jpg" alt="Kia PBV5 Interior Seat" />
-                <span className="image-label">FUTURE MOBILITY SEAT (1st & 3rd ROW)</span>
-              </div>
-              <div className="gallery-card-overlay">
-                <span className="tag">Kia Motors · PBV5 Project</span>
-                <span className="title">{t('portfolio-item3-sub')}</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
 
       {/* ═══════ CTA ═══════ */}
       <section className="cta" id="inquiry">

@@ -361,14 +361,16 @@ ul {
   font-weight: 600;
   letter-spacing: 6px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5); /* 가독성 향상을 위해 밝기 조정 */
+  color: rgba(255, 255, 255, 0.5);
+  /* 가독성 향상을 위해 밝기 조정 */
   margin-bottom: 32px;
 }
 
 .hero-desc {
   font-size: 1.05rem;
   font-weight: 400;
-  color: var(--text-primary); /* 본문 가독성을 위해 흰색에 가깝게 조정 */
+  color: var(--text-primary);
+  /* 본문 가독성을 위해 흰색에 가깝게 조정 */
   opacity: 0.9;
   line-height: 1.8;
   max-width: 520px;
@@ -485,22 +487,33 @@ ul {
 }
 
 .category-chip {
-  padding: 10px 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.03);
+  /* 더 깊이감 있는 배경 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: all 0.3s;
+  transition: all 0.4s var(--ease-out);
   cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.category-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  transform: translateY(-2px);
 }
 
 .category-chip.active {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
 }
 
 /* ═══════ 섹션 공통 ═══════ */
