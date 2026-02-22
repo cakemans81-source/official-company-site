@@ -266,40 +266,6 @@ function App() {
         </div>
       </div>
 
-      {/* ═══════ ABOUT ═══════ */}
-      <section className="about" id="about">
-        <div className="container">
-          <div className="about-grid">
-            <div className="reveal">
-              <div className="about-image-card">
-                <div className="image-placeholder">
-                  <span className="placeholder-text">{t('about-factory')}</span>
-                </div>
-                <div className="since-badge">
-                  <div className="year">22</div>
-                  <div className="label">{t('about-since')}</div>
-                </div>
-              </div>
-            </div>
-            <div className="reveal reveal-delay-2 about-text-side">
-              <div className="section-label">{t('about-label')}</div>
-              <h2 className="section-title" dangerouslySetInnerHTML={{ __html: t('about-heading') }}></h2>
-              <p className="section-desc">{t('about-desc')}</p>
-              <div className="stats-container">
-                <div className="stat-item">
-                  <div className="stat-value">500<span className="plus">+</span></div>
-                  <div className="stat-label">{t('about-stat1')}</div>
-                </div>
-                <div className="stat-item">
-                  <div className="stat-value">99<span className="plus">%</span></div>
-                  <div className="stat-label">{t('about-stat2')}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ═══════ GALLERY ═══════ */}
       <section className="gallery" id="gallery">
         <div className="container">
@@ -331,6 +297,40 @@ function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ ABOUT ═══════ */}
+      <section className="about" id="about">
+        <div className="container">
+          <div className="about-grid">
+            <div className="reveal">
+              <div className="about-image-card">
+                <div className="image-placeholder">
+                  <span className="placeholder-text">{t('about-factory')}</span>
+                </div>
+                <div className="since-badge">
+                  <div className="year">22</div>
+                  <div className="label">{t('about-since')}</div>
+                </div>
+              </div>
+            </div>
+            <div className="reveal reveal-delay-2 about-text-side">
+              <div className="section-label">{t('about-label')}</div>
+              <h2 className="section-title" dangerouslySetInnerHTML={{ __html: t('about-heading') }}></h2>
+              <p className="section-desc">{t('about-desc')}</p>
+              <div className="stats-container">
+                <div className="stat-item">
+                  <div className="stat-value">500<span className="plus">+</span></div>
+                  <div className="stat-label">{t('about-stat1')}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-value">99<span className="plus">%</span></div>
+                  <div className="stat-label">{t('about-stat2')}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
