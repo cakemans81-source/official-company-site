@@ -1137,3 +1137,81 @@ ul {
     padding: 3px 5px;
   }
 }
+
+/* ═══════ 제품 상세 모달 ═══════ */
+.product-detail-modal {
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left !important;
+  padding: 60px !important;
+}
+
+.detail-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-subtle);
+  color: var(--accent-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.product-detail-body {
+  margin-top: 40px;
+}
+
+.detail-main-image {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: var(--bg-secondary);
+}
+
+.detail-main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail-grid img {
+  width: 100%;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+}
+
+.detail-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: var(--text-muted);
+}
+
+.detail-placeholder .icon {
+  font-size: 4rem;
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .product-detail-modal {
+    padding: 40px 24px !important;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

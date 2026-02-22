@@ -71,39 +71,33 @@ const TRANSLATIONS = {
 const PORTFOLIO_DATA = [
   {
     id: 1,
-    category: 'Prototype',
-    company: 'Hyundai Motor Group · Robotics Lab',
-    titleKey: 'portfolio-item1-sub',
-    image: '/mobed.jpg',
-    label: 'ROBOTICS PLATFORM MOCKUP',
+    category: '인테리어',
+    company: 'Kia Motors · PBV5 Project',
+    titleKey: 'KIA PBV5 전용 시트 (1, 3열)',
+    image: '/pbv5_seat.jpg',
+    detailImages: ['/pbv5_seat.jpg', '/pbv5_seat.jpg'], // 실제 다른 각도 이미지가 있다면 추가 가능
+    label: 'FUTURE MOBILITY SEAT',
     featured: true
   },
   {
     id: 2,
-    category: 'Stitching',
-    company: 'Craftsmanship · Detail',
-    titleKey: 'portfolio-item2-sub',
-    image: null,
-    icon: '🪡',
-    label: 'PRECISION STITCH'
-  },
-  {
-    id: 3,
-    category: 'Full Seat',
-    company: 'Kia Motors · PBV5 Project',
-    titleKey: 'portfolio-item3-sub',
-    image: '/pbv5_seat.jpg',
-    label: 'FUTURE MOBILITY SEAT (1st & 3rd ROW)',
+    category: '익스테리어',
+    company: 'Hyundai Motor Group · Robotics Lab',
+    titleKey: '현대자동차 MobED — 외관 목업',
+    image: '/mobed.jpg',
+    detailImages: ['/mobed.jpg', '/mobed.jpg'],
+    label: 'ROBOTICS PLATFORM MOCKUP',
     wide: true
   },
   {
-    id: 4,
-    category: 'Material',
-    company: 'Premium Leather · Texture',
-    titleKey: 'Material Finish Detail',
+    id: 3,
+    category: '인테리어',
+    company: 'Craftsmanship · Detail',
+    titleKey: '정밀 스티칭 인테리어 디테일',
     image: null,
-    icon: '💎',
-    label: 'LEATHER TEXTURE ANALYSIS'
+    icon: '🪡',
+    detailImages: null,
+    label: 'PRECISION STITCH'
   }
 ];
 
@@ -115,9 +109,10 @@ function App() {
   const [lang, setLang] = useState(localStorage.getItem('iru-lang') || 'ko');
   const [activeTab, setActiveTab] = useState('전체');
   const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
-  const categories = [t('filter-all'), 'Full Seat', 'Stitching', 'Material', 'Prototype'];
+  const categories = ['전체', '익스테리어', '인테리어'];
 
   const filteredPortfolio = activeTab === '전체'
     ? PORTFOLIO_DATA
@@ -282,10 +277,11 @@ function App() {
                 key={item.id}
                 className={`gallery-card ${item.featured ? 'featured' : ''} ${item.wide ? 'wide' : ''} reveal`}
                 style={{ transitionDelay: `${(idx % 3) * 0.1}s` }}
+                onClick={() => setSelectedProduct(item)}
               >
                 <div className={`gallery-card-image ${item.image ? 'focus-mask' : ''}`}>
                   {item.image ? (
-                    <img src={item.image} alt={t(item.titleKey)} />
+                    <img src={item.image} alt={item.titleKey} />
                   ) : (
                     <span className="icon">{item.icon}</span>
                   )}
@@ -293,13 +289,49 @@ function App() {
                 </div>
                 <div className="gallery-card-overlay">
                   <span className="tag">{item.company}</span>
-                  <span className="title">{t(item.titleKey)}</span>
+                  <span className="title">{item.titleKey}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ═══════ PRODUCT DETAIL MODAL ═══════ */}
+      {selectedProduct && (
+        <div className="modal-overlay active" onClick={() => setSelectedProduct(null)}>
+          <div className="modal-content product-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedProduct(null)}><X size={24} /></button>
+            <div className="product-detail-header">
+              <span className="detail-category">{selectedProduct.category}</span>
+              <h3 className="modal-title">{selectedProduct.titleKey}</h3>
+              <p className="modal-desc">{selectedProduct.company}</p>
+            </div>
+            <div className="product-detail-body">
+              {selectedProduct.image ? (
+                <div className="detail-main-image">
+                  <img src={selectedProduct.image} alt={selectedProduct.titleKey} />
+                </div>
+              ) : (
+                <div className="detail-placeholder">
+                  <span className="icon">{selectedProduct.icon}</span>
+                  <p>{selectedProduct.label}</p>
+                </div>
+              )}
+              {selectedProduct.detailImages && (
+                <div className="detail-grid">
+                  {selectedProduct.detailImages.map((img, i) => (
+                    <img key={i} src={img} alt={`${selectedProduct.titleKey} detail ${i}`} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <button onClick={() => { setSelectedProduct(null); setShowInquiryModal(true); }} className="btn-fill" style={{ marginTop: '32px', width: '100%' }}>
+              관련 제품 견적 문의하기
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ═══════ ABOUT ═══════ */}
       <section className="about" id="about">
