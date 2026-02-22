@@ -30,7 +30,7 @@ const TRANSLATIONS = {
     'contact-phone-btn': '📞 전화 문의',
     'inquiry-heading': '견적 및 프로젝트 문의',
     'inquiry-desc': '(주)이루는 대표님의 비즈니스를 위한 최상의 목업을 제안합니다.',
-    'inquiry-click-info': '클릭 시 이메일 발송 또는 전화 연결이 가능합니다.',
+    'inquiry-click-info': '클릭 시 이메일 발송이 가능합니다.',
     'footer-tagline': "자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 (주)이루 IRU. All rights reserved.',
   },
@@ -62,7 +62,7 @@ const TRANSLATIONS = {
     'contact-phone-btn': '📞 Call Us',
     'inquiry-heading': 'Project & Quote Inquiry',
     'inquiry-desc': 'IRU will propose the best mockup solution for your business.',
-    'inquiry-click-info': 'Click to send an email or make a phone call.',
+    'inquiry-click-info': 'Click to send an email.',
     'footer-tagline': "A New Standard in Automotive Seat Mockups.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 IRU Co., Ltd. All rights reserved.',
   }
@@ -342,8 +342,7 @@ function App() {
           <div className="section-label reveal">{t('contact-label')}</div>
           <h2 className="section-title reveal" dangerouslySetInnerHTML={{ __html: t('contact-heading') }}></h2>
           <div className="cta-buttons reveal">
-            <button onClick={() => setShowInquiryModal(true)} className="btn-fill">{t('contact-email-btn')} <ArrowRight size={16} /></button>
-            <a href="tel:821033295729" className="btn-ghost">{t('contact-phone-btn')}</a>
+            <button onClick={() => setShowInquiryModal(true)} className="btn-fill" style={{ width: '100%', maxWidth: '300px', justifyContent: 'center' }}>{t('contact-email-btn')} <ArrowRight size={16} /></button>
           </div>
         </div>
       </section>
@@ -361,14 +360,6 @@ function App() {
             <a href="mailto:iru@iru.co.kr" className="modal-info-item">
               <span className="modal-info-label">E-MAIL ADDRESS</span>
               <span className="modal-info-value">iru@iru.co.kr</span>
-            </a>
-            <a href="tel:821033295729" className="modal-info-item">
-              <span className="modal-info-label">CONTACT 01 (MANAGER)</span>
-              <span className="modal-info-value">+82 10-3329-5729</span>
-            </a>
-            <a href="tel:821050428788" className="modal-info-item">
-              <span className="modal-info-label">CONTACT 02 (DIRECTOR)</span>
-              <span className="modal-info-value">+82 10-5042-8788</span>
             </a>
           </div>
           <p className="modal-copy-hint">{t('inquiry-click-info')}</p>
