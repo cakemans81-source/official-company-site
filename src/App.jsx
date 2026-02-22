@@ -190,7 +190,6 @@ function App() {
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content">
-          <img src="/logo.png" alt="IRU" className="hero-logo-large" style={{ width: '180px', height: 'auto', marginBottom: '32px' }} />
           <h1>Precision Seat<br /><em className="accent-text">Mockup</em> Studio</h1>
           <div className="hero-tagline">{t('hero-tagline')}</div>
           <p className="hero-desc" dangerouslySetInnerHTML={{ __html: t('hero-desc') }}></p>
