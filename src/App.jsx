@@ -192,9 +192,7 @@ function App() {
       {/* ═══════ NAV ═══════ */}
       <nav className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
-          <a href="#" className="nav-logo">
-            <img src="/logo.png" alt="(주)이루 IRU" style={{ height: scrolled ? '34px' : '42px', transition: 'all 0.3s' }} />
-          </a>
+          <a href="#" className="nav-logo">IRU</a>
 
           <div className="nav-links desktop-only">
             <a href="#about">{t('nav-about')}</a>
@@ -438,7 +436,7 @@ function App() {
             </div>
             <div className="footer-bottom" style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'space-between', width: '100%', marginTop: '40px', paddingTop: '40px', borderTop: '1px solid var(--border)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <img src="/logo.png" alt="IRU" style={{ height: '24px', width: 'auto' }} />
+                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.08em' }}>IRU</span>
                 <p className="footer-tagline pc-only" style={{ marginBottom: 0 }} dangerouslySetInnerHTML={{ __html: t('footer-tagline') }}></p>
               </div>
               <div className="footer-meta">
