@@ -110,6 +110,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('전체');
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [splashPhase, setSplashPhase] = useState('active');
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
   const categories = ['전체', '익스테리어', '인테리어'];
@@ -123,6 +124,22 @@ function App() {
       videoRef.current.playbackRate = 0.7;
     }
   }, []);
+
+  useEffect(() => {
+    if (splashPhase !== 'active') return;
+    document.body.style.overflow = 'hidden';
+    const timer = setTimeout(() => setSplashPhase('exiting'), 3800);
+    return () => { clearTimeout(timer); document.body.style.overflow = ''; };
+  }, [splashPhase]);
+
+  useEffect(() => {
+    if (splashPhase !== 'exiting') return;
+    const timer = setTimeout(() => {
+      setSplashPhase('done');
+      document.body.style.overflow = '';
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [splashPhase]);
 
   useEffect(() => {
     localStorage.setItem('iru-lang', lang);
@@ -162,6 +179,16 @@ function App() {
 
   return (
     <div className={`app ${menuOpen ? 'menu-open' : ''}`}>
+      {/* ═══════ SPLASH INTRO ═══════ */}
+      {splashPhase !== 'done' && (
+        <div className={`splash-screen ${splashPhase === 'exiting' ? 'splash-exit' : ''}`}>
+          <div className="splash-content">
+            <img src="/logo.png" alt="IRU" className="splash-logo" />
+            <div className="splash-tagline">LET'S MAKE IT HAPPEN</div>
+          </div>
+        </div>
+      )}
+
       {/* ═══════ NAV ═══════ */}
       <nav className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
@@ -228,18 +255,22 @@ function App() {
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content">
-          <h1>Precision Seat<br /><em className="accent-text">Mockup</em> Studio</h1>
-          <div className="hero-tagline">{t('hero-tagline')}</div>
-          <p className="hero-desc" dangerouslySetInnerHTML={{ __html: t('hero-desc') }}></p>
-          <div className="hero-buttons">
-            <button
-              onClick={() => setShowInquiryModal(true)}
-              className="btn-fill"
-            >
-              {t('hero-cta')}
-              <ArrowRight size={16} />
-            </button>
-            <a href="#gallery" className="btn-ghost">{t('hero-gallery')}</a>
+          <div className="hero-brand">
+            <h1 className="hero-title">IRU</h1>
+            <p className="hero-subtitle">Precision Seat Mockup Studio</p>
+          </div>
+          <div className="hero-bottom">
+            <p className="hero-desc" dangerouslySetInnerHTML={{ __html: t('hero-desc') }}></p>
+            <div className="hero-buttons">
+              <button
+                onClick={() => setShowInquiryModal(true)}
+                className="btn-fill"
+              >
+                {t('hero-cta')}
+                <ArrowRight size={16} />
+              </button>
+              <a href="#gallery" className="btn-ghost">{t('hero-gallery')}</a>
+            </div>
           </div>
         </div>
       </section>
