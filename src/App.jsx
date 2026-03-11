@@ -259,19 +259,6 @@ function App() {
             <h1 className="hero-title">IRU</h1>
             <p className="hero-subtitle">Precision Seat Mockup Studio</p>
           </div>
-          <div className="hero-bottom">
-            <p className="hero-desc" dangerouslySetInnerHTML={{ __html: t('hero-desc') }}></p>
-            <div className="hero-buttons">
-              <button
-                onClick={() => setShowInquiryModal(true)}
-                className="btn-fill"
-              >
-                {t('hero-cta')}
-                <ArrowRight size={16} />
-              </button>
-              <a href="#gallery" className="btn-ghost">{t('hero-gallery')}</a>
-            </div>
-          </div>
         </div>
       </section>
 

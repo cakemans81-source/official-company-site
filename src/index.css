@@ -443,25 +443,6 @@ ul {
   letter-spacing: 2px;
 }
 
-.hero-bottom {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  padding: 0 20px;
-}
-
-.hero-desc {
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
 .hero-buttons {
   display: flex;
   gap: 16px;
@@ -945,15 +926,6 @@ ul {
 
   .hero-subtitle {
     font-size: 0.75rem;
-  }
-
-  .hero-bottom {
-    bottom: 40px;
-  }
-
-  .hero-desc {
-    font-size: 0.85rem;
-    padding: 0 10px;
   }
 
   .about {
