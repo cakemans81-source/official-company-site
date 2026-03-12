@@ -107,17 +107,11 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState(localStorage.getItem('iru-lang') || 'ko');
-  const [activeTab, setActiveTab] = useState('전체');
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [splashPhase, setSplashPhase] = useState('active');
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
-  const categories = ['전체', '익스테리어', '인테리어'];
-
-  const filteredPortfolio = activeTab === '전체'
-    ? PORTFOLIO_DATA
-    : PORTFOLIO_DATA.filter(item => item.category === activeTab);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -171,7 +165,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
       elements.forEach((el) => observer.unobserve(el));
     };
-  }, [filteredPortfolio]); // Re-observe when items change
+  }, []);
 
   const toggleLang = () => {
     setLang(prev => prev === 'ko' ? 'en' : 'ko');
@@ -260,55 +254,30 @@ function App() {
         </div>
       </section>
 
-      {/* ═══════ CATEGORY CHIPS ═══════ */}
-      <div className="category-section">
-        <div className="container">
-          <div className="category-scroll">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`category-chip ${activeTab === (cat === t('filter-all') ? '전체' : cat) ? 'active' : ''}`}
-                onClick={() => setActiveTab(cat === t('filter-all') ? '전체' : cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ═══════ GALLERY ═══════ */}
       <section className="gallery" id="gallery">
         <div className="container">
-          <div className="gallery-header">
-            <div className="reveal">
-              <div className="section-label">{t('portfolio-label')}</div>
-              <h2 className="section-title" dangerouslySetInnerHTML={{ __html: t('portfolio-heading') }}></h2>
-            </div>
+          <div className="gallery-heading reveal">
+            <h2>Crafting Precision Beyond Imagination</h2>
+            <p>완벽한 형상과 질감을 구현하는 프리미엄 시트 목업 솔루션</p>
           </div>
-
-          <div className="gallery-grid">
-            {filteredPortfolio.map((item, idx) => (
-              <div
-                key={item.id}
-                className={`gallery-card ${item.featured ? 'featured' : ''} ${item.wide ? 'wide' : ''} reveal`}
-                style={{ transitionDelay: `${(idx % 3) * 0.1}s` }}
-                onClick={() => setSelectedProduct(item)}
-              >
-                <div className={`gallery-card-image ${item.image ? 'focus-mask' : ''}`}>
-                  {item.image ? (
-                    <img src={item.image} alt={item.titleKey} />
-                  ) : (
-                    <span className="icon">{item.icon}</span>
-                  )}
-                  <span className="image-label">{item.label}</span>
-                </div>
-                <div className="gallery-card-overlay">
-                  <span className="tag">{item.company}</span>
-                  <span className="title">{item.titleKey}</span>
-                </div>
-              </div>
-            ))}
+          <div className="gallery-categories">
+            <div className="category-card reveal">
+              <img src="/pbv5_seat.jpg" alt="Seat Mockup" />
+              <span className="category-card-label">Seat Mockup</span>
+            </div>
+            <div className="category-card reveal" style={{ transitionDelay: '0.1s' }}>
+              <img src="/mobed.jpg" alt="Exterior" />
+              <span className="category-card-label">Exterior</span>
+            </div>
+            <div className="category-card reveal" style={{ transitionDelay: '0.2s' }}>
+              <img src="/pbv5_seat.jpg" alt="Interior" />
+              <span className="category-card-label">Interior</span>
+            </div>
+            <div className="category-card reveal" style={{ transitionDelay: '0.3s' }}>
+              <img src="/mobed.jpg" alt="Precision Stitch" />
+              <span className="category-card-label">Precision Stitch</span>
+            </div>
           </div>
         </div>
       </section>
