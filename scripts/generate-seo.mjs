@@ -379,33 +379,83 @@ ${jsonLd(page)}
 function writeRobots() {
   const text = `User-agent: *
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: Yeti
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 User-agent: Applebot
 Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
 
 Sitemap: ${BASE}/sitemap.xml
 `;

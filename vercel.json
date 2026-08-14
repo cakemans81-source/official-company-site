@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/briefing", "destination": "/0601", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
     { "source": "/process", "destination": "/process.html" },
@@ -7,6 +10,21 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/services/design-mockup", "destination": "/services/design-mockup.html" },
     { "source": "/services/working-mockup", "destination": "/services/working-mockup.html" },
-    { "source": "/services/cmf", "destination": "/services/cmf.html" }
+    { "source": "/services/cmf", "destination": "/services/cmf.html" },
+    { "source": "/0601", "destination": "/0601.html" }
+  ],
+  "headers": [
+    {
+      "source": "/0601",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/0601.html",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/briefing/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    }
   ]
 }

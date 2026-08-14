@@ -10,6 +10,8 @@ const SEO_PAGES = {
   '/services/design-mockup': '/services/design-mockup.html',
   '/services/working-mockup': '/services/working-mockup.html',
   '/services/cmf': '/services/cmf.html',
+  '/0601': '/0601.html',
+  '/briefing': '/0601.html',
 }
 
 function seoRewrites() {

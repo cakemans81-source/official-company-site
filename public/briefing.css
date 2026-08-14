@@ -1,0 +1,174 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&display=swap');
+
+:root {
+  --void: #070708;
+  --hud: rgba(255, 255, 255, 0.72);
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #7c5cff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--void);
+  color: #fff;
+  font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+  overflow: hidden;
+}
+
+body.idle { cursor: none; }
+
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 28px;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.brand {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+}
+
+.scene-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  flex: 1;
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: auto;
+  mix-blend-mode: normal;
+}
+
+.count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--hud);
+}
+
+.count b { color: #fff; font-weight: 600; }
+
+#fsBtn {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+#fsBtn:hover { background: rgba(255, 255, 255, 0.16); }
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 21;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  width: 6.25%;
+  background: var(--accent);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#deck {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scene {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  place-items: center;
+}
+
+.stage {
+  width: min(94vw, 1680px);
+  perspective: 1800px;
+  perspective-origin: 50% 45%;
+}
+
+.board {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  transform: translateZ(-180px) rotateX(10deg) scale(0.9);
+  opacity: 0.28;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition:
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s ease;
+  will-change: transform, opacity;
+}
+
+.scene.is-on .board {
+  transform: translateZ(0) rotateX(0) scale(1);
+  opacity: 1;
+}
+
+.scene.is-past .board {
+  transform: translateZ(160px) rotateX(-8deg) scale(1.04);
+  opacity: 0.12;
+}
+
+.hint {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 20;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.38);
+  transition: opacity 0.6s ease;
+}
+
+.hint.gone { opacity: 0; }
+
+@media (max-width: 720px) {
+  .hud { padding: 14px 16px; }
+  .scene-name { display: none; }
+  .hint { display: none; }
+  .board { border-radius: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board, .progress i { transition: none; }
+  #deck { scroll-behavior: auto; }
+}
