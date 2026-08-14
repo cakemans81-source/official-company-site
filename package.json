@@ -5,9 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "seo": "node scripts/generate-seo.mjs",
+    "prebuild": "node scripts/generate-seo.mjs",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "admin": "node admin-server.js",
+    "build:exe": "npx pkg admin-server-pkg.cjs --target node18-win-x64 --output IRU-Admin.exe"
+  },
+  "pkg": {
+    "scripts": "admin-server-pkg.cjs",
+    "targets": ["node18-win-x64"],
+    "outputPath": "."
   },
   "dependencies": {
     "lucide-react": "^0.564.0",

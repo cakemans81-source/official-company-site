@@ -1,0 +1,44 @@
+[
+  {
+    "id": "design-mockup",
+    "title": "Design Mock-up",
+    "subtitle": "디자인 목업",
+    "cover": "/D_M.png",
+    "description": "Exterior and interior design mockups that deliver visual completeness identical to the real product.",
+    "images": [
+      {
+        "src": "/D_M.png",
+        "caption": "디자인 목업 — 실물과 동일한 시각 완성도의 외장·내장 목업",
+        "alt": "(주)이루 자동차 시트 디자인 목업"
+      }
+    ]
+  },
+  {
+    "id": "working-mockup",
+    "title": "Working Mock-up",
+    "subtitle": "워킹 목업",
+    "cover": "/W_M_2.png",
+    "description": "Fully functional working mockups with operational mechanisms, designed for development validation.",
+    "images": [
+      {
+        "src": "/W_M_2.png",
+        "caption": "워킹 목업 — 작동 메커니즘이 있는 개발 검증용 목업",
+        "alt": "(주)이루 워킹 목업 작동 검증용 시트"
+      }
+    ]
+  },
+  {
+    "id": "cmf-patterning",
+    "title": "High-end CMF & Patterning",
+    "subtitle": "하이엔드 CMF & 패턴",
+    "cover": "/Soft_trim__stitching_____4k_delpmaspu.png",
+    "description": "Premium color, material, and finish samples with precision patterning for next-generation mobility.",
+    "images": [
+      {
+        "src": "/Soft_trim__stitching_____4k_delpmaspu.png",
+        "caption": "하이엔드 CMF — 소프트 트림 정밀 스티칭",
+        "alt": "(주)이루 하이엔드 CMF 소프트 트림 스티칭"
+      }
+    ]
+  }
+]

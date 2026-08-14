@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Phone, Mail, MapPin, Menu, X, ChevronRight } from 'lucide-react';
+import CATEGORY_PORTFOLIO from './portfolio-data.json';
+import PROCESS_DATA from './process-data.json';
 
 const TRANSLATIONS = {
   ko: {
@@ -8,6 +10,7 @@ const TRANSLATIONS = {
     'nav-technology': 'Technology',
     'nav-inquiry': '견적문의',
     'hero-tagline': "LET'S MAKE IT HAPPEN — SINCE 2022",
+    'hero-h1-sr': '(주)이루 — 자동차 시트 목업 전문 제작',
     'hero-desc': '자동차 시트의 완벽한 형상과 질감을 구현합니다.<br />가죽의 결, 스티치의 정밀함까지 — 이루의 기술력입니다.',
     'hero-cta': '견적 문의하기',
     'hero-gallery': '갤러리 보기',
@@ -15,8 +18,16 @@ const TRANSLATIONS = {
     'about-factory': '공장 / 작업 현장 이미지',
     'about-since': 'Since',
     'about-label': 'Who We Are',
-    'about-heading': '자동차 시트 목업을<br />브랜드화 하는 전문 스튜디오',
-    'about-desc': '(주)이루는 완성차 업체와 부품사를 위한 프리미엄 시트 목업 솔루션을 제공합니다. 가죽의 질감, 스티치의 정밀함, 폼의 곡면까지 — 실제와 동일한 목업으로 고객의 개발 과정을 완성합니다.',
+    'about-heading': 'The Pinnacle of<br />Premium Mockup Studio',
+    'about-desc': '(주)이루는 자동차 시트 및 내장재, 로봇 목업, 그리고 정교한 원단 봉제 샘플까지 아우르는 프리미엄 제작 스튜디오입니다. 실제 양산품과 구별할 수 없는 완벽한 질감과 오차 없는 정밀함으로 성공적인 개발 과정을 지원합니다.',
+    'about-fact-founded': '설립',
+    'about-fact-ceo': '대표',
+    'about-fact-biz': '사업자등록번호',
+    'about-fact-hq': '본사 · 1공장',
+    'footer-seo-about': '회사 소개',
+    'footer-seo-process': '제작 공정',
+    'footer-seo-faq': '자주 묻는 질문',
+    'footer-seo-contact': '오시는 길',
     'about-stat1': '누적 프로젝트',
     'about-stat2': '납기 준수율',
     'portfolio-label': 'Our Portfolio',
@@ -33,6 +44,17 @@ const TRANSLATIONS = {
     'inquiry-click-info': '클릭 시 이메일 발송이 가능합니다.',
     'footer-tagline': "자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 (주)이루 IRU. All rights reserved.',
+    'location-label': 'Our Location',
+    'location-heading': '찾아오시는 길',
+    'location-tag1': '본사 · 1공장',
+    'location-addr1': '경기도 화성시 만세구 팔탄면 밤뒤길 9',
+    'location-naver1': '네이버 길찾기',
+    'location-tag2': '2공장',
+    'location-addr2': '경기도 화성시 만세구 팔탄면 원골길 51',
+    'footer-addr1-label': '본사 및 1공장',
+    'footer-addr1-value': '경기도 화성시 만세구 팔탄면 밤뒤길 9',
+    'footer-addr2-label': '2공장',
+    'footer-addr2-value': '경기도 화성시 만세구 팔탄면 원골길 51',
   },
   en: {
     'nav-about': 'About Us',
@@ -40,6 +62,7 @@ const TRANSLATIONS = {
     'nav-technology': 'Technology',
     'nav-inquiry': 'Inquiry',
     'hero-tagline': "LET'S MAKE IT HAPPEN — SINCE 2022",
+    'hero-h1-sr': 'IRU — Automotive Seat Mockup Studio',
     'hero-desc': 'We craft the perfect shape and texture of automotive seats.<br />From leather grain to stitch precision — this is IRU.',
     'hero-cta': 'Get a Quote',
     'hero-gallery': 'View Gallery',
@@ -47,8 +70,16 @@ const TRANSLATIONS = {
     'about-factory': 'Factory / Workshop Images',
     'about-since': 'Since',
     'about-label': 'Who We Are',
-    'about-heading': 'A professional studio<br />branding automotive seat mockups',
-    'about-desc': 'IRU provides premium seat mockup solutions for automakers and suppliers. From leather texture to stitch precision and foam curvature — we bring your development process to life with mockups identical to the real thing.',
+    'about-heading': 'The Pinnacle of<br />Premium Mockup Studio',
+    'about-desc': 'IRU is a premium manufacturing studio specializing in automotive seat & interior mockups, robotic mockups, and precision fabric stitching samples. We support successful development with flawless texture and pinpoint accuracy indistinguishable from mass-produced products.',
+    'about-fact-founded': 'Founded',
+    'about-fact-ceo': 'CEO',
+    'about-fact-biz': 'Business Registration No.',
+    'about-fact-hq': 'HQ · Factory 1',
+    'footer-seo-about': 'About',
+    'footer-seo-process': 'Process',
+    'footer-seo-faq': 'FAQ',
+    'footer-seo-contact': 'Contact',
     'about-stat1': 'Cumulative Projects',
     'about-stat2': 'On-Time Delivery Rate',
     'portfolio-label': 'Our Portfolio',
@@ -65,41 +96,19 @@ const TRANSLATIONS = {
     'inquiry-click-info': 'Click to send an email.',
     'footer-tagline': "A New Standard in Automotive Seat Mockups.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 IRU Co., Ltd. All rights reserved.',
+    'location-label': 'Our Location',
+    'location-heading': 'How to Find Us',
+    'location-tag1': 'HQ · Factory 1',
+    'location-addr1': '9 Bamdwi-gil, Paltan-myeon, Manse-gu, Hwaseong-si, Gyeonggi-do',
+    'location-naver1': 'Get Directions',
+    'location-tag2': 'Factory 2',
+    'location-addr2': '51 Wongol-gil, Paltan-myeon, Manse-gu, Hwaseong-si, Gyeonggi-do',
+    'footer-addr1-label': 'HQ & Factory 1',
+    'footer-addr1-value': '9 Bamdwi-gil, Paltan-myeon, Manse-gu, Hwaseong-si',
+    'footer-addr2-label': 'Factory 2',
+    'footer-addr2-value': '51 Wongol-gil, Paltan-myeon, Manse-gu, Hwaseong-si',
   }
 };
-
-const PORTFOLIO_DATA = [
-  {
-    id: 1,
-    category: '인테리어',
-    company: 'Kia Motors · PBV5 Project',
-    titleKey: 'KIA PBV5 전용 시트 (1, 3열)',
-    image: '/pbv5_seat.jpg',
-    detailImages: ['/pbv5_seat.jpg', '/pbv5_seat.jpg'], // 실제 다른 각도 이미지가 있다면 추가 가능
-    label: 'FUTURE MOBILITY SEAT',
-    featured: true
-  },
-  {
-    id: 2,
-    category: '익스테리어',
-    company: 'Hyundai Motor Group · Robotics Lab',
-    titleKey: '현대자동차 MobED — 외관 목업',
-    image: '/mobed.jpg',
-    detailImages: ['/mobed.jpg', '/mobed.jpg'],
-    label: 'ROBOTICS PLATFORM MOCKUP',
-    wide: true
-  },
-  {
-    id: 3,
-    category: '인테리어',
-    company: 'Craftsmanship · Detail',
-    titleKey: '정밀 스티칭 인테리어 디테일',
-    image: null,
-    icon: '🪡',
-    detailImages: null,
-    label: 'PRECISION STITCH'
-  }
-];
 
 // 🎨 IRU Logo - Using official public/logo.png
 function App() {
@@ -110,6 +119,8 @@ function App() {
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [splashPhase, setSplashPhase] = useState('active');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
 
@@ -177,7 +188,7 @@ function App() {
       {splashPhase !== 'done' && (
         <div className={`splash-screen ${splashPhase === 'exiting' ? 'splash-exit' : ''}`}>
           <div className="splash-content">
-            <img src="/logo.png" alt="IRU" className="splash-logo" />
+            <img src="/logo.png" alt="IRU (주)이루 로고" className="splash-logo" />
             <div className="splash-tagline">LET'S MAKE IT HAPPEN</div>
           </div>
         </div>
@@ -191,7 +202,7 @@ function App() {
           <div className="nav-links desktop-only">
             <a href="#about">{t('nav-about')}</a>
             <a href="#gallery">{t('nav-portfolio')}</a>
-            <a href="#technology">{t('nav-technology')}</a>
+            <a href="/process">{t('nav-technology')}</a>
             <button
               className="lang-toggle-btn"
               onClick={toggleLang}
@@ -225,7 +236,7 @@ function App() {
           <div className="mobile-nav-links">
             <a href="#about" onClick={() => setMenuOpen(false)}>{t('nav-about')} <ChevronRight size={18} /></a>
             <a href="#gallery" onClick={() => setMenuOpen(false)}>{t('nav-portfolio')} <ChevronRight size={18} /></a>
-            <a href="#technology" onClick={() => setMenuOpen(false)}>{t('nav-technology')} <ChevronRight size={18} /></a>
+            <a href="/process" onClick={() => setMenuOpen(false)}>{t('nav-technology')} <ChevronRight size={18} /></a>
             <button className="mobile-cta" onClick={() => { setMenuOpen(false); setShowInquiryModal(true); }}>{t('nav-inquiry')}</button>
           </div>
         </div>
@@ -241,14 +252,18 @@ function App() {
             loop
             playsInline
             className="hero-video"
+            aria-label="(주)이루 자동차 시트 목업 제작 현장 영상"
           >
-            <source src="/video_1.mp4" type="video/mp4" />
+            <source src="/video_2.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content">
           <div className="hero-brand">
-            <h1 className="hero-title">IRU</h1>
+            <h1 className="hero-title">
+              IRU
+              <span className="visually-hidden"> {t('hero-h1-sr')}</span>
+            </h1>
             <p className="hero-subtitle">Precision Seat Mockup Studio</p>
           </div>
         </div>
@@ -258,29 +273,76 @@ function App() {
       <section className="gallery" id="gallery">
         <div className="container">
           <div className="gallery-heading reveal">
-            <h2>Crafting Precision Beyond Imagination</h2>
-            <p>완벽한 형상과 질감을 구현하는 프리미엄 시트 목업 솔루션</p>
+            <h2>Beyond Design, Into Reality.</h2>
+            <p>Perfectly realizing your ideas into tangible reality.<br />Delivering ultimate precision in everything from automotive interiors to cutting-edge robotics.</p>
           </div>
           <div className="gallery-categories">
-            <div className="category-card reveal">
-              <img src="/pbv5_seat.jpg" alt="Seat Mockup" />
-              <span className="category-card-label">Seat Mockup</span>
+            {CATEGORY_PORTFOLIO.map((cat, i) => (
+              <div
+                key={cat.id}
+                className="category-card reveal"
+                style={{ transitionDelay: `${i * 0.1}s`, cursor: 'pointer' }}
+                onClick={() => { setSelectedCategory(cat); setLightboxIndex(null); }}
+              >
+                <img src={cat.cover} alt={`${cat.title} — ${cat.subtitle}`} />
+                <div className="category-card-hover-overlay">
+                  <span className="category-view-label">View Portfolio →</span>
+                </div>
+                <span className="category-card-label">{cat.title}<br /><small>{cat.subtitle}</small></span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ═══════ CATEGORY GALLERY MODAL ═══════ */}
+      {selectedCategory && (
+        <div className="modal-overlay active cat-gallery-overlay" onClick={() => { setSelectedCategory(null); setLightboxIndex(null); }}>
+          <div className="cat-gallery-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => { setSelectedCategory(null); setLightboxIndex(null); }}><X size={24} /></button>
+            <div className="cat-gallery-header">
+              <div className="section-label">{selectedCategory.subtitle}</div>
+              <h2 className="cat-gallery-title">{selectedCategory.title}</h2>
+              <p className="cat-gallery-desc">{selectedCategory.description}</p>
             </div>
-            <div className="category-card reveal" style={{ transitionDelay: '0.1s' }}>
-              <img src="/mobed.jpg" alt="Exterior" />
-              <span className="category-card-label">Exterior</span>
+            <div className="cat-gallery-grid">
+              {selectedCategory.images.map((img, idx) => (
+                <div key={idx} className="cat-gallery-item" onClick={() => setLightboxIndex(idx)}>
+                  <img src={img.src} alt={img.alt || img.caption} />
+                  <div className="cat-gallery-item-overlay">
+                    <span>{img.caption}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="category-card reveal" style={{ transitionDelay: '0.2s' }}>
-              <img src="/pbv5_seat.jpg" alt="Interior" />
-              <span className="category-card-label">Interior</span>
-            </div>
-            <div className="category-card reveal" style={{ transitionDelay: '0.3s' }}>
-              <img src="/mobed.jpg" alt="Precision Stitch" />
-              <span className="category-card-label">Precision Stitch</span>
+            <div className="cat-gallery-footer">
+              <button onClick={() => { setSelectedCategory(null); setShowInquiryModal(true); }} className="btn-fill">
+                이 카테고리로 견적 문의 <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
-      </section>
+      )}
+
+      {/* ═══════ LIGHTBOX ═══════ */}
+      {selectedCategory && lightboxIndex !== null && (
+        <div className="lightbox-overlay" onClick={() => setLightboxIndex(null)}>
+          <button className="lightbox-close" onClick={() => setLightboxIndex(null)}><X size={28} /></button>
+          <button className="lightbox-nav lightbox-prev"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + selectedCategory.images.length) % selectedCategory.images.length); }}>
+            ‹
+          </button>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedCategory.images[lightboxIndex].src} alt={selectedCategory.images[lightboxIndex].alt || selectedCategory.images[lightboxIndex].caption} />
+            <p className="lightbox-caption">{selectedCategory.images[lightboxIndex].caption}</p>
+          </div>
+          <button className="lightbox-nav lightbox-next"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % selectedCategory.images.length); }}>
+            ›
+          </button>
+        </div>
+      )}
 
       {/* ═══════ PRODUCT DETAIL MODAL ═══════ */}
       {selectedProduct && (
@@ -322,32 +384,44 @@ function App() {
       <section className="about" id="about">
         <div className="container">
           <div className="about-grid">
-            <div className="reveal">
-              <div className="about-image-card">
-                <div className="image-placeholder">
-                  <span className="placeholder-text">{t('about-factory')}</span>
-                </div>
-                <div className="since-badge">
-                  <div className="year">22</div>
-                  <div className="label">{t('about-since')}</div>
-                </div>
-              </div>
-            </div>
             <div className="reveal reveal-delay-2 about-text-side">
               <div className="section-label">{t('about-label')}</div>
               <h2 className="section-title" dangerouslySetInnerHTML={{ __html: t('about-heading') }}></h2>
               <p className="section-desc">{t('about-desc')}</p>
-              <div className="stats-container">
-                <div className="stat-item">
-                  <div className="stat-value">500<span className="plus">+</span></div>
-                  <div className="stat-label">{t('about-stat1')}</div>
+              <dl className="about-facts">
+                <div>
+                  <dt>{t('about-fact-founded')}</dt>
+                  <dd>2022</dd>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-value">99<span className="plus">%</span></div>
-                  <div className="stat-label">{t('about-stat2')}</div>
+                <div>
+                  <dt>{t('about-fact-ceo')}</dt>
+                  <dd>이광수</dd>
+                </div>
+                <div>
+                  <dt>{t('about-fact-biz')}</dt>
+                  <dd>380-87-02545</dd>
+                </div>
+                <div>
+                  <dt>{t('about-fact-hq')}</dt>
+                  <dd>{t('location-addr1')}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          {/* ── Process Cards ── */}
+          <div className="process-grid reveal">
+            {PROCESS_DATA.map(({ id, num, en, ko, img }) => (
+              <div className="process-card" key={id}>
+                <img src={img} alt={`${en} (${ko}) — (주)이루`} className="process-card-bg" />
+                <div className="process-card-overlay" />
+                <div className="process-card-content">
+                  <span className="process-num">{num}</span>
+                  <div className="process-title">{en}</div>
+                  <div className="process-sub">{ko}</div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -360,6 +434,45 @@ function App() {
           <h2 className="section-title reveal" dangerouslySetInnerHTML={{ __html: t('contact-heading') }}></h2>
           <div className="cta-buttons reveal">
             <button onClick={() => setShowInquiryModal(true)} className="btn-fill" style={{ width: '100%', maxWidth: '300px', justifyContent: 'center' }}>{t('contact-email-btn')} <ArrowRight size={16} /></button>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ LOCATION ═══════ */}
+      <section className="location" id="location">
+        <div className="container">
+          <div className="section-label reveal">{t('location-label')}</div>
+          <h2 className="section-title reveal">{t('location-heading')}</h2>
+          <div className="location-inner reveal">
+            <div className="location-map">
+              <iframe
+                src="https://maps.google.com/maps?q=(주)이루+경기도+화성시+만세구+팔탄면+밤뒤길+9&output=embed&hl=ko&z=16"
+                title="IRU 본사 위치"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+            <div className="location-cards">
+              <div className="location-card">
+                <div className="location-card-tag">{t('location-tag1')}</div>
+                <p className="location-card-addr">{t('location-addr1')}</p>
+                <a
+                  href="https://map.naver.com/p/search/경기도 화성시 만세구 팔탄면 밤뒤길 9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="location-card-btn"
+                >
+                  {t('location-naver1')} <ArrowRight size={14} />
+                </a>
+              </div>
+              <div className="location-card">
+                <div className="location-card-tag">{t('location-tag2')}</div>
+                <p className="location-card-addr">{t('location-addr2')}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -389,18 +502,25 @@ function App() {
           <div className="footer-inner">
             <div className="footer-brand">
               <div className="footer-info-group">
-                <div className="footer-address">
-                  <span><strong>본사 및 1공장 :</strong> 경기도 화성시 팔탄면 밤뒤길 9</span>
+                <address className="footer-address">
+                  <span><strong>{t('footer-addr1-label')} :</strong> {t('footer-addr1-value')}</span>
                   <span className="divider pc-only"> | </span>
                   <span className="mobile-br">
-                    <strong> 2공장 :</strong> 경기도 화성시 팔탄면 원골길 51
+                    <strong>{t('footer-addr2-label')} :</strong> {t('footer-addr2-value')}
                   </span>
-                </div>
+                </address>
                 <p className="footer-business-info">
                   <span>사업자번호 : 380-87-02545</span>
-                  <span>대표자 : 이 광 수</span>
+                  <span>대표자 : 이광수</span>
                   <span>E-mail : <a href="mailto:iru@iru.co.kr">iru@iru.co.kr</a></span>
                 </p>
+                <nav className="footer-seo-links" aria-label={lang === 'ko' ? '사이트 정보' : 'Site pages'}>
+                  <a href="/about">{t('footer-seo-about')}</a>
+                  <a href="/process">{t('footer-seo-process')}</a>
+                  <a href="/portfolio">{lang === 'ko' ? '포트폴리오' : 'Portfolio'}</a>
+                  <a href="/faq">{t('footer-seo-faq')}</a>
+                  <a href="/contact">{t('footer-seo-contact')}</a>
+                </nav>
               </div>
             </div>
             <div className="footer-bottom" style={{ display: 'flex', alignItems: 'center', gap: '20px', justifyContent: 'space-between', width: '100%', marginTop: '40px', paddingTop: '40px', borderTop: '1px solid var(--border)' }}>

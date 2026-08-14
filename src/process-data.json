@@ -1,0 +1,30 @@
+[
+  {
+    "id": "design",
+    "num": "01",
+    "en": "Design & 3D Engineering",
+    "ko": "디자인 및 설계",
+    "img": "/1__.png"
+  },
+  {
+    "id": "machining",
+    "num": "02",
+    "en": "Precision Machining",
+    "ko": "정밀 가공",
+    "img": "/___4k_delpmaspu.png"
+  },
+  {
+    "id": "post-processing",
+    "num": "03",
+    "en": "Post-Processing",
+    "ko": "후처리",
+    "img": "/GONG_3.png"
+  },
+  {
+    "id": "assembly",
+    "num": "04",
+    "en": "Detail Assembly",
+    "ko": "디테일 ASSY",
+    "img": "/GONG_4.png"
+  }
+]
