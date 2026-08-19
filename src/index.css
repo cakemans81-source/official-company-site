@@ -989,7 +989,11 @@ address.footer-address {
   aspect-ratio: 4/3;
   overflow: hidden;
   border-radius: 10px;
-  cursor: zoom-in;
+  cursor: pointer;
+}
+
+.cat-gallery-item.project-card {
+  cursor: pointer;
 }
 
 .cat-gallery-item img {
@@ -1014,7 +1018,8 @@ address.footer-address {
   transition: opacity 0.3s;
 }
 
-.cat-gallery-item:hover .cat-gallery-item-overlay {
+.cat-gallery-item:hover .cat-gallery-item-overlay,
+.cat-gallery-item.project-card .cat-gallery-item-overlay {
   opacity: 1;
 }
 
@@ -1023,6 +1028,27 @@ address.footer-address {
   font-size: 0.78rem;
   font-weight: 500;
   color: #fff;
+}
+
+.cat-gallery-item-overlay small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lightbox-project {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 12px;
+}
+
+.lightbox-index {
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .cat-gallery-footer {

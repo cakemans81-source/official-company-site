@@ -5,26 +5,34 @@
     "subtitle": "디자인 목업",
     "cover": "/hyundai-wia-01.jpg",
     "description": "Exterior and interior design mockups that deliver visual completeness identical to the real product.",
-    "images": [
+    "projects": [
       {
-        "src": "/hyundai-wia-01.jpg",
-        "caption": "현대 WIA 디자인 모델 — 외관",
-        "alt": "(주)이루 현대 WIA 디자인 모델 외관"
-      },
-      {
-        "src": "/hyundai-wia-02.jpg",
-        "caption": "현대 WIA 디자인 모델 — 실내",
-        "alt": "(주)이루 현대 WIA 디자인 모델 실내 정면"
-      },
-      {
-        "src": "/hyundai-wia-03.jpg",
-        "caption": "현대 WIA 디자인 모델 — 라운지",
-        "alt": "(주)이루 현대 WIA 디자인 모델 라운지 시트"
-      },
-      {
-        "src": "/hyundai-wia-04.jpg",
-        "caption": "현대 WIA 디자인 모델 — 실내 디테일",
-        "alt": "(주)이루 현대 WIA 디자인 모델 실내 디테일"
+        "id": "hyundai-wia",
+        "title": "현대 WIA 디자인 모델",
+        "subtitle": "Hyundai WIA Design Model",
+        "cover": "/hyundai-wia-01.jpg",
+        "images": [
+          {
+            "src": "/hyundai-wia-01.jpg",
+            "caption": "현대 WIA 디자인 모델 — 외관",
+            "alt": "(주)이루 현대 WIA 디자인 모델 외관"
+          },
+          {
+            "src": "/hyundai-wia-02.jpg",
+            "caption": "현대 WIA 디자인 모델 — 실내",
+            "alt": "(주)이루 현대 WIA 디자인 모델 실내 정면"
+          },
+          {
+            "src": "/hyundai-wia-03.jpg",
+            "caption": "현대 WIA 디자인 모델 — 라운지",
+            "alt": "(주)이루 현대 WIA 디자인 모델 라운지 시트"
+          },
+          {
+            "src": "/hyundai-wia-04.jpg",
+            "caption": "현대 WIA 디자인 모델 — 실내 디테일",
+            "alt": "(주)이루 현대 WIA 디자인 모델 실내 디테일"
+          }
+        ]
       }
     ]
   },
@@ -34,11 +42,19 @@
     "subtitle": "워킹 목업",
     "cover": "/W_M_3.jpg",
     "description": "Fully functional working mockups with operational mechanisms, designed for development validation.",
-    "images": [
+    "projects": [
       {
-        "src": "/W_M_3.jpg",
-        "caption": "워킹 목업 — 작동 메커니즘이 있는 개발 검증용 목업",
-        "alt": "(주)이루 워킹 목업 시트와 휴머노이드 검증"
+        "id": "working-seat-humanoid",
+        "title": "워킹 시트 · 휴머노이드",
+        "subtitle": "Working Seat & Humanoid",
+        "cover": "/W_M_3.jpg",
+        "images": [
+          {
+            "src": "/W_M_3.jpg",
+            "caption": "워킹 목업 — 작동 메커니즘이 있는 개발 검증용 목업",
+            "alt": "(주)이루 워킹 목업 시트와 휴머노이드 검증"
+          }
+        ]
       }
     ]
   },
@@ -48,11 +64,19 @@
     "subtitle": "하이엔드 CMF & 패턴",
     "cover": "/Soft_trim__stitching_____4k_delpmaspu.png",
     "description": "Premium color, material, and finish samples with precision patterning for next-generation mobility.",
-    "images": [
+    "projects": [
       {
-        "src": "/Soft_trim__stitching_____4k_delpmaspu.png",
-        "caption": "하이엔드 CMF — 소프트 트림 정밀 스티칭",
-        "alt": "(주)이루 하이엔드 CMF 소프트 트림 스티칭"
+        "id": "cmf-stitch",
+        "title": "소프트 트림 스티칭",
+        "subtitle": "Soft Trim Stitching",
+        "cover": "/Soft_trim__stitching_____4k_delpmaspu.png",
+        "images": [
+          {
+            "src": "/Soft_trim__stitching_____4k_delpmaspu.png",
+            "caption": "하이엔드 CMF — 소프트 트림 정밀 스티칭",
+            "alt": "(주)이루 하이엔드 CMF 소프트 트림 스티칭"
+          }
+        ]
       }
     ]
   }

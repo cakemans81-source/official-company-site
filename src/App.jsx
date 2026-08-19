@@ -28,6 +28,8 @@ const TRANSLATIONS = {
     'footer-seo-process': '제작 공정',
     'footer-seo-faq': '자주 묻는 질문',
     'footer-seo-contact': '오시는 길',
+    'project-count': '장',
+    'project-open': '슬라이드 보기',
     'about-stat1': '누적 프로젝트',
     'about-stat2': '납기 준수율',
     'portfolio-label': 'Our Portfolio',
@@ -80,6 +82,8 @@ const TRANSLATIONS = {
     'footer-seo-process': 'Process',
     'footer-seo-faq': 'FAQ',
     'footer-seo-contact': 'Contact',
+    'project-count': 'photos',
+    'project-open': 'View slides',
     'about-stat1': 'Cumulative Projects',
     'about-stat2': 'On-Time Delivery Rate',
     'portfolio-label': 'Our Portfolio',
@@ -120,7 +124,26 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [splashPhase, setSplashPhase] = useState('active');
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const closeGallery = () => {
+    setSelectedCategory(null);
+    setSelectedProject(null);
+    setLightboxIndex(null);
+  };
+
+  const openProject = (project) => {
+    setSelectedProject(project);
+    setLightboxIndex(0);
+  };
+
+  const closeLightbox = () => {
+    setSelectedProject(null);
+    setLightboxIndex(null);
+  };
+
+  const projectSlides = selectedProject?.images || [];
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
 
@@ -150,6 +173,17 @@ function App() {
     localStorage.setItem('iru-lang', lang);
     document.documentElement.lang = lang;
   }, [lang]);
+
+  useEffect(() => {
+    if (lightboxIndex === null || !projectSlides.length) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') setLightboxIndex((i) => (i + 1) % projectSlides.length);
+      if (e.key === 'ArrowLeft') setLightboxIndex((i) => (i - 1 + projectSlides.length) % projectSlides.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxIndex, projectSlides.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -282,7 +316,7 @@ function App() {
                 key={cat.id}
                 className="category-card reveal"
                 style={{ transitionDelay: `${i * 0.1}s`, cursor: 'pointer' }}
-                onClick={() => { setSelectedCategory(cat); setLightboxIndex(null); }}
+                onClick={() => { setSelectedCategory(cat); setSelectedProject(null); setLightboxIndex(null); }}
               >
                 <img src={cat.cover} alt={`${cat.title} — ${cat.subtitle}`} />
                 <div className="category-card-hover-overlay">
@@ -298,26 +332,31 @@ function App() {
 
       {/* ═══════ CATEGORY GALLERY MODAL ═══════ */}
       {selectedCategory && (
-        <div className="modal-overlay active cat-gallery-overlay" onClick={() => { setSelectedCategory(null); setLightboxIndex(null); }}>
+        <div className="modal-overlay active cat-gallery-overlay" onClick={closeGallery}>
           <div className="cat-gallery-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => { setSelectedCategory(null); setLightboxIndex(null); }}><X size={24} /></button>
+            <button className="modal-close" onClick={closeGallery}><X size={24} /></button>
             <div className="cat-gallery-header">
               <div className="section-label">{selectedCategory.subtitle}</div>
               <h2 className="cat-gallery-title">{selectedCategory.title}</h2>
               <p className="cat-gallery-desc">{selectedCategory.description}</p>
             </div>
             <div className="cat-gallery-grid">
-              {selectedCategory.images.map((img, idx) => (
-                <div key={idx} className="cat-gallery-item" onClick={() => setLightboxIndex(idx)}>
-                  <img src={img.src} alt={img.alt || img.caption} />
+              {(selectedCategory.projects || []).map((project) => (
+                <div
+                  key={project.id}
+                  className="cat-gallery-item project-card"
+                  onClick={() => openProject(project)}
+                >
+                  <img src={project.cover} alt={project.title} />
                   <div className="cat-gallery-item-overlay">
-                    <span>{img.caption}</span>
+                    <span>{project.title}</span>
+                    <small>{project.images.length}{lang === 'ko' ? '장' : ' photos'} · {t('project-open')}</small>
                   </div>
                 </div>
               ))}
             </div>
             <div className="cat-gallery-footer">
-              <button onClick={() => { setSelectedCategory(null); setShowInquiryModal(true); }} className="btn-fill">
+              <button onClick={() => { closeGallery(); setShowInquiryModal(true); }} className="btn-fill">
                 이 카테고리로 견적 문의 <ArrowRight size={16} />
               </button>
             </div>
@@ -326,21 +365,31 @@ function App() {
       )}
 
       {/* ═══════ LIGHTBOX ═══════ */}
-      {selectedCategory && lightboxIndex !== null && (
-        <div className="lightbox-overlay" onClick={() => setLightboxIndex(null)}>
-          <button className="lightbox-close" onClick={() => setLightboxIndex(null)}><X size={28} /></button>
-          <button className="lightbox-nav lightbox-prev"
-            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + selectedCategory.images.length) % selectedCategory.images.length); }}>
-            ‹
-          </button>
+      {selectedProject && lightboxIndex !== null && projectSlides[lightboxIndex] && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <button className="lightbox-close" onClick={closeLightbox}><X size={28} /></button>
+          {projectSlides.length > 1 && (
+            <button className="lightbox-nav lightbox-prev"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + projectSlides.length) % projectSlides.length); }}>
+              ‹
+            </button>
+          )}
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={selectedCategory.images[lightboxIndex].src} alt={selectedCategory.images[lightboxIndex].alt || selectedCategory.images[lightboxIndex].caption} />
-            <p className="lightbox-caption">{selectedCategory.images[lightboxIndex].caption}</p>
+            <p className="lightbox-project">{selectedProject.title}</p>
+            <img src={projectSlides[lightboxIndex].src} alt={projectSlides[lightboxIndex].alt || projectSlides[lightboxIndex].caption} />
+            <p className="lightbox-caption">
+              {projectSlides[lightboxIndex].caption}
+              {projectSlides.length > 1 && (
+                <span className="lightbox-index"> {lightboxIndex + 1} / {projectSlides.length}</span>
+              )}
+            </p>
           </div>
-          <button className="lightbox-nav lightbox-next"
-            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % selectedCategory.images.length); }}>
-            ›
-          </button>
+          {projectSlides.length > 1 && (
+            <button className="lightbox-nav lightbox-next"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % projectSlides.length); }}>
+              ›
+            </button>
+          )}
         </div>
       )}
 
