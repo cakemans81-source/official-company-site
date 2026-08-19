@@ -84,7 +84,7 @@ const PAGES = [
     body: `
       <div class="card-list">
         <article class="card">
-          <img src="/D_M.png" alt="(주)이루 자동차 시트 디자인 목업" />
+          <img src="/hyundai-wia-01.jpg" alt="(주)이루 현대 WIA 디자인 모델" />
           <div class="card-body">
             <h2>Design Mock-up — 디자인 목업</h2>
             <p>실물과 같은 시각 완성도의 외장·내장 디자인 목업입니다.</p>
@@ -110,6 +110,7 @@ const PAGES = [
       </div>
       <h2>갤러리에 있는 프로젝트 이미지</h2>
       <ul>
+        <li>현대 WIA 디자인 모델</li>
         <li>현대자동차 MobED — 외관 목업</li>
         <li>기아 PBV5 전용 시트 (1·3열)</li>
         <li>정밀 스티칭 디테일</li>

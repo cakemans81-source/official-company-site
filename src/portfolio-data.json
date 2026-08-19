@@ -3,13 +3,28 @@
     "id": "design-mockup",
     "title": "Design Mock-up",
     "subtitle": "디자인 목업",
-    "cover": "/D_M.png",
+    "cover": "/hyundai-wia-01.jpg",
     "description": "Exterior and interior design mockups that deliver visual completeness identical to the real product.",
     "images": [
       {
-        "src": "/D_M.png",
-        "caption": "디자인 목업 — 실물과 동일한 시각 완성도의 외장·내장 목업",
-        "alt": "(주)이루 자동차 시트 디자인 목업"
+        "src": "/hyundai-wia-01.jpg",
+        "caption": "현대 WIA 디자인 모델 — 외관",
+        "alt": "(주)이루 현대 WIA 디자인 모델 외관"
+      },
+      {
+        "src": "/hyundai-wia-02.jpg",
+        "caption": "현대 WIA 디자인 모델 — 실내",
+        "alt": "(주)이루 현대 WIA 디자인 모델 실내 정면"
+      },
+      {
+        "src": "/hyundai-wia-03.jpg",
+        "caption": "현대 WIA 디자인 모델 — 라운지",
+        "alt": "(주)이루 현대 WIA 디자인 모델 라운지 시트"
+      },
+      {
+        "src": "/hyundai-wia-04.jpg",
+        "caption": "현대 WIA 디자인 모델 — 실내 디테일",
+        "alt": "(주)이루 현대 WIA 디자인 모델 실내 디테일"
       }
     ]
   },
