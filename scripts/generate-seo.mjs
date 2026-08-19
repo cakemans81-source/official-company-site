@@ -92,7 +92,7 @@ const PAGES = [
           </div>
         </article>
         <article class="card">
-          <img src="/W_M_2.png" alt="(주)이루 워킹 목업 — 작동 검증용 시트 목업" />
+          <img src="/W_M_3.jpg" alt="(주)이루 워킹 목업 — 작동 검증용 시트 목업" />
           <div class="card-body">
             <h2>Working Mock-up — 워킹 목업</h2>
             <p>작동 메커니즘이 있는 개발 검증용 목업입니다.</p>

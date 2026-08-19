@@ -17,13 +17,13 @@
     "id": "working-mockup",
     "title": "Working Mock-up",
     "subtitle": "워킹 목업",
-    "cover": "/W_M_2.png",
+    "cover": "/W_M_3.jpg",
     "description": "Fully functional working mockups with operational mechanisms, designed for development validation.",
     "images": [
       {
-        "src": "/W_M_2.png",
+        "src": "/W_M_3.jpg",
         "caption": "워킹 목업 — 작동 메커니즘이 있는 개발 검증용 목업",
-        "alt": "(주)이루 워킹 목업 작동 검증용 시트"
+        "alt": "(주)이루 워킹 목업 시트와 휴머노이드 검증"
       }
     ]
   },
