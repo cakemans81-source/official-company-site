@@ -407,6 +407,7 @@ function layout(page) {
   <link rel="canonical" href="${BASE}${page.path}" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="stylesheet" href="/seo.css" />
+  <meta name="naver-site-verification" content="bc04ab5530fda7ba87e7dc2722bdf889911524c8" />
   <meta name="geo.region" content="KR-41" />
   <meta name="geo.placename" content="경기도 화성시 팔탄면" />
   <meta name="geo.position" content="${hq.geo.latitude};${hq.geo.longitude}" />
