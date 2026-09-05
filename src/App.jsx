@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Phone, Mail, MapPin, Menu, X, ChevronRight } from 'lucide-react';
+import { ArrowRight, Phone, Mail, MapPin, Menu, X, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
 import CATEGORY_PORTFOLIO from './portfolio-data.json';
 import PROCESS_DATA from './process-data.json';
 
@@ -134,11 +134,16 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [selectedProcess, setSelectedProcess] = useState(null);
 
   const closeGallery = () => {
     setSelectedCategory(null);
     setSelectedProject(null);
     setLightboxIndex(null);
+  };
+
+  const closeProcessModal = () => {
+    setSelectedProcess(null);
   };
 
   const openProject = (project) => {
@@ -152,6 +157,9 @@ function App() {
   };
 
   const projectSlides = selectedProject?.images || [];
+  const currentProcessIdx = selectedProcess ? PROCESS_DATA.findIndex((p) => p.id === selectedProcess.id) : -1;
+  const prevProcess = currentProcessIdx > 0 ? PROCESS_DATA[currentProcessIdx - 1] : PROCESS_DATA[PROCESS_DATA.length - 1];
+  const nextProcess = currentProcessIdx >= 0 ? PROCESS_DATA[(currentProcessIdx + 1) % PROCESS_DATA.length] : null;
 
   const t = (key) => TRANSLATIONS[lang][key] || key;
 
@@ -192,6 +200,23 @@ function App() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [lightboxIndex, projectSlides.length]);
+
+  useEffect(() => {
+    if (!selectedProcess) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeProcessModal();
+      if (e.key === 'ArrowRight') {
+        const idx = PROCESS_DATA.findIndex((p) => p.id === selectedProcess.id);
+        setSelectedProcess(PROCESS_DATA[(idx + 1) % PROCESS_DATA.length]);
+      }
+      if (e.key === 'ArrowLeft') {
+        const idx = PROCESS_DATA.findIndex((p) => p.id === selectedProcess.id);
+        setSelectedProcess(PROCESS_DATA[(idx - 1 + PROCESS_DATA.length) % PROCESS_DATA.length]);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedProcess]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -470,14 +495,26 @@ function App() {
 
           {/* ── Process Cards ── */}
           <div className="process-grid reveal">
-            {PROCESS_DATA.map(({ id, num, en, ko, img }) => (
-              <div className="process-card" key={id}>
-                <img src={img} alt={`${en} (${ko}) — (주)이루`} className="process-card-bg" />
+            {PROCESS_DATA.map((proc) => (
+              <div
+                className="process-card"
+                key={proc.id}
+                onClick={() => setSelectedProcess(proc)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedProcess(proc); }}
+                title={`${proc.en} (${proc.ko}) — 상세 설명 보기`}
+              >
+                <img src={proc.img} alt={`${proc.en} (${proc.ko}) — (주)이루`} className="process-card-bg" />
                 <div className="process-card-overlay" />
                 <div className="process-card-content">
-                  <span className="process-num">{num}</span>
-                  <div className="process-title">{en}</div>
-                  <div className="process-sub">{ko}</div>
+                  <span className="process-num">{proc.num}</span>
+                  <div className="process-title">{proc.en}</div>
+                  <div className="process-sub">{proc.ko}</div>
+                  <div className="process-card-badge">
+                    <span>공정 설명 보기</span>
+                    <ArrowRight size={13} />
+                  </div>
                 </div>
               </div>
             ))}
@@ -540,6 +577,129 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* ═══════ PROCESS DETAIL MODAL ═══════ */}
+      {selectedProcess && (
+        <div className="modal-overlay active process-modal-overlay" onClick={closeProcessModal}>
+          <div className="process-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close process-modal-close" onClick={closeProcessModal} aria-label="닫기">
+              <X size={22} />
+            </button>
+
+            {/* ── Step Indicator Tabs ── */}
+            <div className="process-modal-tabs">
+              {PROCESS_DATA.map((item) => (
+                <button
+                  key={item.id}
+                  className={`process-tab-btn ${item.id === selectedProcess.id ? 'active' : ''}`}
+                  onClick={() => setSelectedProcess(item)}
+                >
+                  <span className="process-tab-num">{item.num}</span>
+                  <span className="process-tab-name">{item.ko}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* ── Modal Hero Visual Banner ── */}
+            <div className="process-modal-hero">
+              <img src={selectedProcess.img} alt={selectedProcess.en} className="process-modal-hero-img" />
+              <div className="process-modal-hero-overlay" />
+              <div className="process-modal-hero-content">
+                <span className="process-hero-step">PROCESS {selectedProcess.num} / 04</span>
+                <h2 className="process-hero-title">{selectedProcess.en}</h2>
+                <p className="process-hero-sub">{selectedProcess.ko}</p>
+              </div>
+            </div>
+
+            {/* ── Modal Main Content ── */}
+            <div className="process-modal-body">
+              {/* Tagline / Hook */}
+              {selectedProcess.tagline && (
+                <div className="process-tagline">
+                  <p>{selectedProcess.tagline}</p>
+                </div>
+              )}
+
+              {/* Detailed Description */}
+              <div className="process-desc-box">
+                <p>{selectedProcess.description}</p>
+              </div>
+
+              {/* Key Highlights */}
+              {selectedProcess.points && (
+                <div className="process-section">
+                  <h3 className="process-section-title">핵심 엔지니어링 포인트</h3>
+                  <div className="process-points-list">
+                    {selectedProcess.points.map((pt, pIdx) => (
+                      <div key={pIdx} className="process-point-card">
+                        <div className="point-card-num">{pIdx + 1}</div>
+                        <div className="point-card-content">
+                          <h4>{pt.title}</h4>
+                          <p>{pt.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Technical Specifications */}
+              {selectedProcess.specs && (
+                <div className="process-section">
+                  <h3 className="process-section-title">주요 기술 & 가공 스펙</h3>
+                  <div className="process-specs-tags">
+                    {selectedProcess.specs.map((spec, sIdx) => (
+                      <span key={sIdx} className="process-spec-tag">
+                        <CheckCircle2 size={14} className="spec-check-icon" />
+                        {spec}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* ── Modal Footer Navigation & CTA ── */}
+            <div className="process-modal-footer">
+              <div className="process-nav-btns">
+                {prevProcess && (
+                  <button
+                    className="process-nav-btn prev"
+                    onClick={() => setSelectedProcess(prevProcess)}
+                    title="이전 공정"
+                  >
+                    <ChevronLeft size={16} />
+                    <span>{prevProcess.num}. {prevProcess.ko}</span>
+                  </button>
+                )}
+                {nextProcess && (
+                  <button
+                    className="process-nav-btn next"
+                    onClick={() => setSelectedProcess(nextProcess)}
+                    title="다음 공정"
+                  >
+                    <span>{nextProcess.num}. {nextProcess.ko}</span>
+                    <ChevronRight size={16} />
+                  </button>
+                )}
+              </div>
+
+              <div className="process-footer-cta">
+                <button
+                  className="btn-fill process-cta-btn"
+                  onClick={() => {
+                    closeProcessModal();
+                    setShowInquiryModal(true);
+                  }}
+                >
+                  <span>이 공정으로 제작 상담하기</span>
+                  <ArrowRight size={15} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ═══════ INQUIRY MODAL ═══════ */}
       <div className={`modal-overlay ${showInquiryModal ? 'active' : ''}`} onClick={() => setShowInquiryModal(false)}>
