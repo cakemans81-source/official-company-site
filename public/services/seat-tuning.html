@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자동차 시트 튜닝 & VIP 커스텀 | (주)이루 IRU</title>
+  <meta name="description" content="(주)이루 자동차 시트 튜닝. 카니발·스타리아 VIP 의전 리무진 시트, 180도 차박 평탄화, 최고급 나파가죽·알칸타라 커스텀. 완성차 연구소 목업 기술력 그대로 시공합니다." />
+  <meta name="keywords" content="이루, 자동차시트튜닝, 카니발리무진시트, 스타리아의전시트, VIP시트개조, 차박평탄화시트, 나파가죽시트, 리무진시트튜닝, 의전시트" />
+  <link rel="canonical" href="https://www.iru.co.kr/tuning" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="stylesheet" href="/seo.css" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="IRU (주)이루" />
+  <meta property="og:title" content="자동차 시트 튜닝 & VIP 커스텀 | (주)이루 IRU" />
+  <meta property="og:description" content="완성차 연구소의 정밀 목업 기술력 그대로, 당신의 차량에 최상의 안락함과 품격을 완성합니다." />
+  <meta property="og:url" content="https://www.iru.co.kr/tuning" />
+  <meta property="og:image" content="https://www.iru.co.kr/og-image.jpg" />
+
+  <style>
+    /* 튜닝 전용 스타일 보강 */
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-glow: rgba(212, 175, 55, 0.25);
+    }
+    
+    .gold-kicker {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gold-kicker::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .tuning-hero {
+      padding: 80px 0 48px;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 70%), var(--bg);
+    }
+
+    .tuning-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 36px 0 60px;
+    }
+
+    .tuning-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tuning-card:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    .tuning-card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .tuning-card h3 {
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .tuning-card p {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .tuning-card ul {
+      margin: 0;
+      list-style: none;
+    }
+
+    .tuning-card ul li {
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tuning-card ul li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* 차별화 박스 */
+    .diff-box {
+      background: var(--bg2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 36px;
+      margin: 40px 0;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .diff-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--card);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .diff-item .num {
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .diff-item h4 {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .diff-item p {
+      font-size: 0.8rem;
+      color: var(--text2);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* 견적 상담 폼 */
+    .inquiry-form-card {
+      background: var(--card);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 48px 0;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .form-col label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      padding: 12px 16px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: var(--bg2);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .form-check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text2);
+      cursor: pointer;
+    }
+
+    .form-check-item input {
+      accent-color: var(--gold);
+    }
+
+    .btn-gold-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold), #b38f24);
+      color: #000;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 16px;
+    }
+
+    .btn-gold-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--gold-glow);
+    }
+
+    .call-direct-box {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .call-direct-box a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    .call-direct-box a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .tuning-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-check-grid { grid-template-columns: 1fr; }
+      .inquiry-form-card { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ═══════ HEADER ═══════ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">IRU</a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="/">홈</a>
+        <a href="/about">회사 소개</a>
+        <a href="/process">제작 공정</a>
+        <a href="/portfolio">포트폴리오</a>
+        <a href="/tuning" aria-current="page" style="color: var(--gold); font-weight: 700;">시트 튜닝</a>
+        <a href="/contact">오시는 길</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════ HERO BAND ═══════ -->
+  <div class="tuning-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">홈</a> / <span>자동차 시트 튜닝</span></p>
+      <div class="gold-kicker">Automotive Seat Tuning & VIP Custom</div>
+      <h1>자동차 시트 튜닝 & VIP 리무진 커스텀</h1>
+      <p class="lead">
+        완성차 R&D 연구소 목업 전문 기업 (주)이루의 정밀 3D 기술력과 장인정신 스티칭 마감 그대로,<br />
+        카니발, 스타리아, 수입 밴 차량에 최고급 안락함과 품격 있는 공간을 완성합니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════ MAIN CONTENT ═══════ -->
+  <main class="wrap">
+    <article>
+      <h2>주요 시공 및 커스텀 분야</h2>
+      <p>일반 시공샵과 차별화된 완성차 납품 규격의 정밀함과 마감 퀄리티를 제공합니다.</p>
+
+      <div class="tuning-grid">
+        <!-- 서비스 1 -->
+        <div class="tuning-card">
+          <div class="tuning-card-icon">👑</div>
+          <h3>카니발 / 스타리아 VIP 의전 리무진 시트</h3>
+          <p>항공기 퍼스트 클래스의 안락함을 차량 내부에 구현하는 최고급 의전 전용 시트입니다.</p>
+          <ul>
+            <li>무중력(Zero-Gravity) 모드 전동 리클라이닝</li>
+            <li>종아리를 완벽히 받쳐주는 전동 언더서포트</li>
+            <li>피로를 풀어주는 8방향 에어 안마 시스템</li>
+            <li>3단계 조절 통풍/열선 및 스마트 메모리 시트</li>
+          </ul>
+        </div>
+
+        <!-- 서비스 2 -->
+        <div class="tuning-card">
+          <div class="tuning-card-icon">🏕️</div>
+          <h3>180도 풀 플랫 차박 & 캠핑 평탄화 시트</h3>
+          <p>단차 없는 완전 평탄화로 차박과 일상 주행의 완벽한 조화를 선사합니다.</p>
+          <ul>
+            <li>원터치 180도 완전 침대형 평탄화 전환</li>
+            <li>실내 공간을 극대화하는 롱레일 확장 개조</li>
+            <li>고밀도 폼 적용으로 허리 베김 없는 수면 공간</li>
+            <li>3열 탈거 및 합법적 구조변경 완벽 대응</li>
+          </ul>
+        </div>
+
+        <!-- 서비스 3 -->
+        <div class="tuning-card">
+          <div class="tuning-card-icon">✨</div>
+          <h3>최고급 나파가죽 & 알칸타라 실내 트리밍</h3>
+          <p>촉감과 내구성이 검증된 명품 소재와 수제 스티치로 인테리어 품격을 극대화합니다.</p>
+          <ul>
+            <li>독일산 최고 등급 천연 나파가죽 풀 트리밍</li>
+            <li>이태리 정품 알칸타라 스웨이드 헤드라이닝</li>
+            <li>오차 0.5mm 이내의 정밀 다이아몬드 퀼팅 스티치</li>
+            <li>도어 트림, 암레스트, 대시보드 맞춤 컬러 매칭</li>
+          </ul>
+        </div>
+
+        <!-- 서비스 4 -->
+        <div class="tuning-card">
+          <div class="tuning-card-icon">🛡️</div>
+          <h3>국토부 합법 구조변경 & 안전 인증 프레임</h3>
+          <p>승객의 안전을 최우선으로, 철저한 안전 기준을 통과한 프레임만을 사용합니다.</p>
+          <ul>
+            <li>국토교통부 자동차 안전기준 적합 인증</li>
+            <li>차량 충돌 시 강성을 보장하는 고강도 프레임</li>
+            <li>시공부터 교통안전공단 구조변경 승인까지 원스톱 대행</li>
+            <li>정기 자동차 검사 시 불이익 없는 100% 합법 시공</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 왜 이루인가? -->
+      <div class="diff-box">
+        <h2 style="margin-top:0; text-align:center;">왜 (주)이루의 시트 튜닝인가?</h2>
+        <p style="text-align:center; color:var(--text2);">완성차 선행 개발을 수행하는 엔지니어링 스튜디오의 기술력이 고객님의 차량에 담깁니다.</p>
+
+        <div class="diff-grid">
+          <div class="diff-item">
+            <div class="num">01</div>
+            <h4>3D 역설계 엔지니어링</h4>
+            <p>눈대중으로 개조하지 않습니다. 3D 스캔 및 CATIA 설계를 통해 유격과 잡소리를 원천 차단합니다.</p>
+          </div>
+          <div class="diff-item">
+            <div class="num">02</div>
+            <h4>완성차 규격 장인 스티치</h4>
+            <p>현대·기아 연구소 납품 품평회용 목업을 제작하는 동일한 봉제 장인이 직접 수작업 마감합니다.</p>
+          </div>
+          <div class="diff-item">
+            <div class="num">03</div>
+            <h4>원스톱 토탈 빌드</h4>
+            <p>설계, 프레임 가공, 가죽 봉제, 전장 배선, 구조변경까지 외주 없이 자체 공장에서 원스톱으로 완성합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 견적 및 상담 신청 폼 -->
+      <div class="inquiry-form-card" id="tuning-inquiry">
+        <h2 style="margin-top:0; color:var(--gold); text-align:center;">시트 튜닝 견적 및 시공 상담 신청</h2>
+        <p style="text-align:center; color:var(--text2); margin-bottom: 32px;">
+          차종과 원하시는 시공 항목을 알려주시면, 전문 엔지니어가 상세 견적 및 시공 일정을 친절하게 안내해 드립니다.
+        </p>
+
+        <form id="tuningForm" onsubmit="handleTuningSubmit(event)">
+          <div class="form-row">
+            <div class="form-col" style="margin-bottom:0;">
+              <label for="userName">고객명 / 법인명 *</label>
+              <input type="text" id="userName" class="form-input" placeholder="예: 홍길동 또는 (주)회사명" required />
+            </div>
+            <div class="form-col" style="margin-bottom:0;">
+              <label for="userPhone">연락처 *</label>
+              <input type="tel" id="userPhone" class="form-input" placeholder="010-0000-0000" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-col" style="margin-bottom:0;">
+              <label for="carModel">시공 대상 차종 *</label>
+              <select id="carModel" class="form-select" required>
+                <option value="">차종을 선택해주세요</option>
+                <option value="카니발 4세대 / 하이리무진">기아 카니발 (4세대 / 페이스리프트 / 하이리무진)</option>
+                <option value="스타리아 / 라운지">현대 스타리아 (라운지 / 투어러 / 캠퍼)</option>
+                <option value="수입 밴 (벤츠 스프린터/V-Class)">수입 밴 (벤츠 스프린터, V-Class 등)</option>
+                <option value="대형 SUV/세단 (제네시스 등)">대형 SUV / 세단 (제네시스, 펠리세이드 등)</option>
+                <option value="기타 차종">기타 차종 (직접 기재)</option>
+              </select>
+            </div>
+            <div class="form-col" style="margin-bottom:0;">
+              <label for="visitDate">희망 상담/시공 일정</label>
+              <input type="date" id="visitDate" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label>원하시는 시공 항목 (복수 선택 가능)</label>
+            <div class="form-check-grid">
+              <label class="form-check-item"><input type="checkbox" name="scope" value="VIP 의전 리무진 시트" checked /> VIP 전동 의전 리무진 시트</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="180도 차박 평탄화" /> 180도 침대형 차박 평탄화</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="나파가죽 전체 교체" /> 최고급 나파가죽 시트 교체</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="알칸타라 실내 트리밍" /> 알칸타라 헤드라이닝/트리밍</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="롱레일 공간 확장" /> 롱레일 개조 및 바닥 요트바닥재</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="합법 구조변경 대행" /> 국토부 합법 구조변경 대행</label>
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="userNotes">추가 요청사항</label>
+            <textarea id="userNotes" class="form-textarea" rows="4" placeholder="원하시는 가죽 색상, 탑승 인원(4인승/7인승/9인승), 특수 요구사항 등을 편하게 적어주세요."></textarea>
+          </div>
+
+          <button type="submit" class="btn-gold-submit">
+            시트 튜닝 견적 및 상담 신청하기 ➔
+          </button>
+        </form>
+
+        <div class="call-direct-box">
+          <p style="margin-bottom:4px; font-size:0.9rem; color:var(--text);">빠른 유선 상담이나 방문 예약을 원하시나요?</p>
+          <a href="tel:+82-10-3329-5729">📞 대표 직통 유선 상담: 010-3329-5729</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>(주)이루 IRU</strong> · LET'S MAKE IT HAPPEN</p>
+      <p>대표 이광수 · 사업자번호 380-87-02545</p>
+      <p>본사 및 1공장: 경기도 화성시 만세구 팔탄면 밤뒤길 9</p>
+      <p>2공장: 경기도 화성시 만세구 팔탄면 원골길 51</p>
+      <p><a href="mailto:iru@iru.co.kr">iru@iru.co.kr</a> · <a href="tel:+82-10-3329-5729">010-3329-5729</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function handleTuningSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('userName').value;
+      const phone = document.getElementById('userPhone').value;
+      const car = document.getElementById('carModel').value;
+      const notes = document.getElementById('userNotes').value;
+      const scopes = Array.from(document.querySelectorAll('input[name="scope"]:checked')).map(cb => cb.value).join(', ');
+
+      const subject = encodeURIComponent(`[시트 튜닝 견적 문의] ${name}님 (${car})`);
+      const body = encodeURIComponent(
+        `고객명: ${name}\n` +
+        `연락처: ${phone}\n` +
+        `차종: ${car}\n` +
+        `희망 시공: ${scopes}\n` +
+        `요청사항:\n${notes}`
+      );
+
+      // 이메일 클라이언트 호출 및 알림
+      window.location.href = `mailto:iru@iru.co.kr?subject=${subject}&body=${body}`;
+      alert(`${name} 고객님, 시트 튜닝 상담 요청 내용이 준비되었습니다.\n이메일 발송 창이 열리면 전송 버튼을 눌러주세요.\n빠른 상담을 위해 담당자가 010-3329-5729 번호로도 연락드리겠습니다.`);
+    }
+  </script>
+</body>
+</html>

@@ -472,6 +472,30 @@ ul {
   box-shadow: 0 12px 40px var(--accent-glow);
 }
 
+.btn-tuning-cta {
+  background: linear-gradient(135deg, #d4af37, #997316) !important;
+  color: #0a0a0a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25) !important;
+  text-decoration: none !important;
+}
+
+.btn-tuning-cta:hover {
+  background: linear-gradient(135deg, #f3e5ab, #d4af37) !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4) !important;
+}
+
+.nav-tuning-link {
+  color: #d4af37 !important;
+  font-weight: 600 !important;
+}
+
+.nav-tuning-link:hover {
+  color: #f3e5ab !important;
+}
+
 .btn-ghost {
   display: inline-flex;
   align-items: center;

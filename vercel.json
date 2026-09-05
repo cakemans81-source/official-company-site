@@ -11,6 +11,8 @@
     { "source": "/services/design-mockup", "destination": "/services/design-mockup.html" },
     { "source": "/services/working-mockup", "destination": "/services/working-mockup.html" },
     { "source": "/services/cmf", "destination": "/services/cmf.html" },
+    { "source": "/services/seat-tuning", "destination": "/services/seat-tuning.html" },
+    { "source": "/tuning", "destination": "/tuning.html" },
     { "source": "/0601", "destination": "/0601.html" }
   ],
   "headers": [

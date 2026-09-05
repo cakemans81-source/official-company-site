@@ -8,6 +8,7 @@ const TRANSLATIONS = {
     'nav-about': 'About Us',
     'nav-portfolio': 'Portfolio',
     'nav-technology': 'Technology',
+    'nav-tuning': '시트 튜닝',
     'nav-inquiry': '견적문의',
     'hero-tagline': "LET'S MAKE IT HAPPEN — SINCE 2022",
     'hero-h1-sr': '(주)이루 — 자동차 시트 목업 전문 제작',
@@ -39,10 +40,13 @@ const TRANSLATIONS = {
     'portfolio-item3-sub': '기아 PBV5 전용 시트 (1,3열)',
     'contact-label': 'Contact Us',
     'contact-heading': '프로젝트를 함께<br />시작하세요',
-    'contact-email-btn': '이메일 견적 문의',
-    'contact-phone-btn': '📞 전화 문의',
+    'contact-email-btn': '시트 목업 견적 문의',
+    'contact-tuning-btn': '자동차 시트 튜닝 문의',
     'inquiry-heading': '견적 및 프로젝트 문의',
     'inquiry-desc': '(주)이루는 대표님의 비즈니스를 위한 최상의 목업을 제안합니다.',
+    'inquiry-tuning-title': '🚘 자동차 시트 튜닝 전용 상담',
+    'inquiry-tuning-desc': '카니발·스타리아 VIP 의전 리무진 시트, 차박 평탄화, 나파가죽 커스텀',
+    'inquiry-tuning-link': '시트 튜닝 전용 페이지 바로가기 →',
     'inquiry-click-info': '클릭 시 이메일 발송이 가능합니다.',
     'footer-tagline': "자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 (주)이루 IRU. All rights reserved.',
@@ -62,6 +66,7 @@ const TRANSLATIONS = {
     'nav-about': 'About Us',
     'nav-portfolio': 'Portfolio',
     'nav-technology': 'Technology',
+    'nav-tuning': 'Seat Tuning',
     'nav-inquiry': 'Inquiry',
     'hero-tagline': "LET'S MAKE IT HAPPEN — SINCE 2022",
     'hero-h1-sr': 'IRU — Automotive Seat Mockup Studio',
@@ -93,10 +98,13 @@ const TRANSLATIONS = {
     'portfolio-item3-sub': 'Kia PBV5 Dedicated Seats (Row 1 & 3)',
     'contact-label': 'Contact Us',
     'contact-heading': "Let's start your<br />project together",
-    'contact-email-btn': 'Email Inquiry',
-    'contact-phone-btn': '📞 Call Us',
+    'contact-email-btn': 'Seat Mockup Inquiry',
+    'contact-tuning-btn': 'Seat Tuning Inquiry',
     'inquiry-heading': 'Project & Quote Inquiry',
     'inquiry-desc': 'IRU will propose the best mockup solution for your business.',
+    'inquiry-tuning-title': '🚘 Seat Tuning Consultation',
+    'inquiry-tuning-desc': 'Carnival & Staria VIP Limousine Seats, Camping Flat Beds, Nappa Custom',
+    'inquiry-tuning-link': 'Go to Seat Tuning Page →',
     'inquiry-click-info': 'Click to send an email.',
     'footer-tagline': "A New Standard in Automotive Seat Mockups.<br />Let's Make It Happen.",
     'footer-copyright': '© 2026 IRU Co., Ltd. All rights reserved.',
@@ -237,6 +245,7 @@ function App() {
             <a href="#about">{t('nav-about')}</a>
             <a href="#gallery">{t('nav-portfolio')}</a>
             <a href="/process">{t('nav-technology')}</a>
+            <a href="/tuning" className="nav-tuning-link">{t('nav-tuning')}</a>
             <button
               className="lang-toggle-btn"
               onClick={toggleLang}
@@ -271,6 +280,7 @@ function App() {
             <a href="#about" onClick={() => setMenuOpen(false)}>{t('nav-about')} <ChevronRight size={18} /></a>
             <a href="#gallery" onClick={() => setMenuOpen(false)}>{t('nav-portfolio')} <ChevronRight size={18} /></a>
             <a href="/process" onClick={() => setMenuOpen(false)}>{t('nav-technology')} <ChevronRight size={18} /></a>
+            <a href="/tuning" onClick={() => setMenuOpen(false)} style={{ color: '#d4af37' }}>{t('nav-tuning')} <ChevronRight size={18} /></a>
             <button className="mobile-cta" onClick={() => { setMenuOpen(false); setShowInquiryModal(true); }}>{t('nav-inquiry')}</button>
           </div>
         </div>
@@ -481,8 +491,13 @@ function App() {
         <div className="container">
           <div className="section-label reveal">{t('contact-label')}</div>
           <h2 className="section-title reveal" dangerouslySetInnerHTML={{ __html: t('contact-heading') }}></h2>
-          <div className="cta-buttons reveal">
-            <button onClick={() => setShowInquiryModal(true)} className="btn-fill" style={{ width: '100%', maxWidth: '300px', justifyContent: 'center' }}>{t('contact-email-btn')} <ArrowRight size={16} /></button>
+          <div className="cta-buttons reveal" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button onClick={() => setShowInquiryModal(true)} className="btn-fill" style={{ minWidth: '240px', justifyContent: 'center' }}>
+              {t('contact-email-btn')} <ArrowRight size={16} />
+            </button>
+            <a href="/tuning" className="btn-fill btn-tuning-cta" style={{ minWidth: '240px', justifyContent: 'center' }}>
+              {t('contact-tuning-btn')} <ArrowRight size={16} />
+            </a>
           </div>
         </div>
       </section>
@@ -537,11 +552,19 @@ function App() {
           </div>
           <div className="modal-info-list">
             <a href="mailto:iru@iru.co.kr" className="modal-info-item">
-              <span className="modal-info-label">E-MAIL ADDRESS</span>
+              <span className="modal-info-label">1. 시트 목업 / R&D 프로젝트 문의</span>
               <span className="modal-info-value">iru@iru.co.kr</span>
+              <small style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '4px' }}>{t('inquiry-click-info')}</small>
+            </a>
+
+            <a href="/tuning" className="modal-info-item" style={{ border: '1px solid rgba(212, 175, 55, 0.4)', background: 'linear-gradient(145deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02))' }}>
+              <span className="modal-info-label" style={{ color: '#d4af37', fontWeight: 700 }}>2. {t('inquiry-tuning-title')}</span>
+              <span className="modal-info-value" style={{ fontSize: '0.9rem', color: '#f3e5ab' }}>{t('inquiry-tuning-desc')}</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#d4af37', fontWeight: 600, fontSize: '0.82rem', marginTop: '8px' }}>
+                {t('inquiry-tuning-link')}
+              </span>
             </a>
           </div>
-          <p className="modal-copy-hint">{t('inquiry-click-info')}</p>
         </div>
       </div>
 
