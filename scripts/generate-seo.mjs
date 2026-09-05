@@ -254,7 +254,7 @@ function jsonLd(page) {
       '@type': ['Organization', 'LocalBusiness', 'AutomotiveBusiness'],
       '@id': orgId(),
       name: company.brandName,
-      alternateName: [company.englishName, '이루', company.legalName],
+      alternateName: ['이루', '(주)이루', company.legalName, '주식회사이루', company.englishName],
       legalName: company.legalName,
       url: `${BASE}/`,
       logo: `${BASE}/logo.png`,
@@ -337,6 +337,15 @@ function jsonLd(page) {
       },
     },
     {
+      '@type': 'WebSite',
+      '@id': `${BASE}/#website`,
+      url: `${BASE}/`,
+      name: company.brandName,
+      alternateName: ['이루', '주식회사 이루', '주식회사이루', 'IRU'],
+      inLanguage: ['ko', 'en'],
+      publisher: { '@id': orgId() },
+    },
+    {
       '@type': 'WebPage',
       '@id': `${BASE}${page.path}#webpage`,
       url: `${BASE}${page.path}`,
@@ -414,7 +423,7 @@ function layout(page) {
   <meta name="ICBM" content="${hq.geo.latitude}, ${hq.geo.longitude}" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="ko_KR" />
-  <meta property="og:site_name" content="IRU (주)이루" />
+  <meta property="og:site_name" content="(주)이루" />
   <meta property="og:title" content="${page.title}" />
   <meta property="og:description" content="${page.description}" />
   <meta property="og:url" content="${BASE}${page.path}" />
