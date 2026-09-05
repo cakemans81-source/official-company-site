@@ -44,8 +44,8 @@ const TRANSLATIONS = {
     'contact-tuning-btn': '자동차 시트 튜닝 문의',
     'inquiry-heading': '견적 및 프로젝트 문의',
     'inquiry-desc': '(주)이루는 대표님의 비즈니스를 위한 최상의 목업을 제안합니다.',
-    'inquiry-tuning-title': '🚘 자동차 시트 튜닝 전용 상담',
-    'inquiry-tuning-desc': '카니발·스타리아 VIP 의전 리무진 시트, 차박 평탄화, 나파가죽 커스텀',
+    'inquiry-tuning-title': '자동차 시트 튜닝 전용 상담',
+    'inquiry-tuning-desc': '카니발·스타리아 VIP 의전 리무진 시트, 최고급 나파가죽 커스텀',
     'inquiry-tuning-link': '시트 튜닝 전용 페이지 바로가기 →',
     'inquiry-click-info': '클릭 시 이메일 발송이 가능합니다.',
     'footer-tagline': "자동차 시트 목업의 새로운 기준.<br />Let's Make It Happen.",
@@ -102,8 +102,8 @@ const TRANSLATIONS = {
     'contact-tuning-btn': 'Seat Tuning Inquiry',
     'inquiry-heading': 'Project & Quote Inquiry',
     'inquiry-desc': 'IRU will propose the best mockup solution for your business.',
-    'inquiry-tuning-title': '🚘 Seat Tuning Consultation',
-    'inquiry-tuning-desc': 'Carnival & Staria VIP Limousine Seats, Camping Flat Beds, Nappa Custom',
+    'inquiry-tuning-title': 'Seat Tuning Consultation',
+    'inquiry-tuning-desc': 'Carnival & Staria VIP Limousine Seats, Nappa Leather Custom',
     'inquiry-tuning-link': 'Go to Seat Tuning Page →',
     'inquiry-click-info': 'Click to send an email.',
     'footer-tagline': "A New Standard in Automotive Seat Mockups.<br />Let's Make It Happen.",
@@ -552,13 +552,13 @@ function App() {
           </div>
           <div className="modal-info-list">
             <a href="mailto:iru@iru.co.kr" className="modal-info-item">
-              <span className="modal-info-label">1. 시트 목업 / R&D 프로젝트 문의</span>
+              <span className="modal-info-label">시트 목업 / R&D 프로젝트 문의</span>
               <span className="modal-info-value">iru@iru.co.kr</span>
               <small style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '4px' }}>{t('inquiry-click-info')}</small>
             </a>
 
             <a href="/tuning" className="modal-info-item" style={{ border: '1px solid rgba(212, 175, 55, 0.4)', background: 'linear-gradient(145deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02))' }}>
-              <span className="modal-info-label" style={{ color: '#d4af37', fontWeight: 700 }}>2. {t('inquiry-tuning-title')}</span>
+              <span className="modal-info-label" style={{ color: '#d4af37', fontWeight: 700 }}>{t('inquiry-tuning-title')}</span>
               <span className="modal-info-value" style={{ fontSize: '0.9rem', color: '#f3e5ab' }}>{t('inquiry-tuning-desc')}</span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#d4af37', fontWeight: 600, fontSize: '0.82rem', marginTop: '8px' }}>
                 {t('inquiry-tuning-link')}

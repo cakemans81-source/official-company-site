@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>자동차 시트 튜닝 & VIP 커스텀 | (주)이루 IRU</title>
-  <meta name="description" content="(주)이루 자동차 시트 튜닝. 카니발·스타리아 VIP 의전 리무진 시트, 180도 차박 평탄화, 최고급 나파가죽·알칸타라 커스텀. 완성차 연구소 목업 기술력 그대로 시공합니다." />
-  <meta name="keywords" content="이루, 자동차시트튜닝, 카니발리무진시트, 스타리아의전시트, VIP시트개조, 차박평탄화시트, 나파가죽시트, 리무진시트튜닝, 의전시트" />
+  <meta name="description" content="(주)이루 자동차 시트 튜닝. 카니발·스타리아 VIP 의전 리무진 시트, 최고급 나파가죽·알칸타라 실내 커스텀. 완성차 연구소 목업 기술력 그대로 시공합니다." />
+  <meta name="keywords" content="이루, 자동차시트튜닝, 카니발리무진시트, 스타리아의전시트, VIP시트개조, 나파가죽시트, 리무진시트튜닝, 의전시트" />
   <link rel="canonical" href="https://www.iru.co.kr/tuning" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="stylesheet" href="/seo.css" />
@@ -19,7 +19,6 @@
   <meta property="og:image" content="https://www.iru.co.kr/og-image.jpg" />
 
   <style>
-    /* 튜닝 전용 스타일 보강 */
     :root {
       --gold: #d4af37;
       --gold-light: #f3e5ab;
@@ -74,9 +73,14 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    .tuning-card-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
+    .tuning-card-num {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: inline-block;
     }
 
     .tuning-card h3 {
@@ -107,7 +111,7 @@
     }
 
     .tuning-card ul li::before {
-      content: '✓';
+      content: '—';
       color: var(--gold);
       font-weight: bold;
     }
@@ -137,7 +141,8 @@
     }
 
     .diff-item .num {
-      font-size: 1.5rem;
+      font-family: var(--font-en);
+      font-size: 1.3rem;
       color: var(--gold);
       font-weight: 700;
       margin-bottom: 8px;
@@ -315,7 +320,7 @@
       <div class="tuning-grid">
         <!-- 서비스 1 -->
         <div class="tuning-card">
-          <div class="tuning-card-icon">👑</div>
+          <span class="tuning-card-num">SECTION 01</span>
           <h3>카니발 / 스타리아 VIP 의전 리무진 시트</h3>
           <p>항공기 퍼스트 클래스의 안락함을 차량 내부에 구현하는 최고급 의전 전용 시트입니다.</p>
           <ul>
@@ -326,22 +331,22 @@
           </ul>
         </div>
 
-        <!-- 서비스 2 -->
+        <!-- 서비스 2 (차박 평탄화 대체: 롱레일 공간 확장 및 바닥 커스텀) -->
         <div class="tuning-card">
-          <div class="tuning-card-icon">🏕️</div>
-          <h3>180도 풀 플랫 차박 & 캠핑 평탄화 시트</h3>
-          <p>단차 없는 완전 평탄화로 차박과 일상 주행의 완벽한 조화를 선사합니다.</p>
+          <span class="tuning-card-num">SECTION 02</span>
+          <h3>맞춤형 롱레일 공간 확장 및 바닥 커스텀</h3>
+          <p>탑승자의 편의와 공간 활용도를 극대화하는 레일 개조 및 프리미엄 바닥재 시공입니다.</p>
           <ul>
-            <li>원터치 180도 완전 침대형 평탄화 전환</li>
-            <li>실내 공간을 극대화하는 롱레일 확장 개조</li>
-            <li>고밀도 폼 적용으로 허리 베김 없는 수면 공간</li>
-            <li>3열 탈거 및 합법적 구조변경 완벽 대응</li>
+            <li>탑승 공간을 극대화하는 통합형 롱레일 개조</li>
+            <li>요트용 고급 우드 플로어 및 대리석 패턴 바닥재</li>
+            <li>3열 및 트렁크 공간 최적화 수납 레이아웃 커스텀</li>
+            <li>레일 이동 시 소음과 유격을 차단하는 정밀 가공</li>
           </ul>
         </div>
 
         <!-- 서비스 3 -->
         <div class="tuning-card">
-          <div class="tuning-card-icon">✨</div>
+          <span class="tuning-card-num">SECTION 03</span>
           <h3>최고급 나파가죽 & 알칸타라 실내 트리밍</h3>
           <p>촉감과 내구성이 검증된 명품 소재와 수제 스티치로 인테리어 품격을 극대화합니다.</p>
           <ul>
@@ -354,7 +359,7 @@
 
         <!-- 서비스 4 -->
         <div class="tuning-card">
-          <div class="tuning-card-icon">🛡️</div>
+          <span class="tuning-card-num">SECTION 04</span>
           <h3>국토부 합법 구조변경 & 안전 인증 프레임</h3>
           <p>승객의 안전을 최우선으로, 철저한 안전 기준을 통과한 프레임만을 사용합니다.</p>
           <ul>
@@ -394,7 +399,7 @@
       <div class="inquiry-form-card" id="tuning-inquiry">
         <h2 style="margin-top:0; color:var(--gold); text-align:center;">시트 튜닝 견적 및 시공 상담 신청</h2>
         <p style="text-align:center; color:var(--text2); margin-bottom: 32px;">
-          차종과 원하시는 시공 항목을 알려주시면, 전문 엔지니어가 상세 견적 및 시공 일정을 친절하게 안내해 드립니다.
+          차종과 원하시는 시공 항목을 알려주시면, 전문 엔지니어가 상세 견적 및 시공 일정을 안내해 드립니다.
         </p>
 
         <form id="tuningForm" onsubmit="handleTuningSubmit(event)">
@@ -415,9 +420,9 @@
               <select id="carModel" class="form-select" required>
                 <option value="">차종을 선택해주세요</option>
                 <option value="카니발 4세대 / 하이리무진">기아 카니발 (4세대 / 페이스리프트 / 하이리무진)</option>
-                <option value="스타리아 / 라운지">현대 스타리아 (라운지 / 투어러 / 캠퍼)</option>
+                <option value="스타리아 / 라운지">현대 스타리아 (라운지 / 투어러 / 킨더)</option>
                 <option value="수입 밴 (벤츠 스프린터/V-Class)">수입 밴 (벤츠 스프린터, V-Class 등)</option>
-                <option value="대형 SUV/세단 (제네시스 등)">대형 SUV / 세단 (제네시스, 펠리세이드 등)</option>
+                <option value="대형 SUV/세단 (제네시스 등)">대형 SUV / 세단 (제네시스, 팰리세이드 등)</option>
                 <option value="기타 차종">기타 차종 (직접 기재)</option>
               </select>
             </div>
@@ -431,10 +436,10 @@
             <label>원하시는 시공 항목 (복수 선택 가능)</label>
             <div class="form-check-grid">
               <label class="form-check-item"><input type="checkbox" name="scope" value="VIP 의전 리무진 시트" checked /> VIP 전동 의전 리무진 시트</label>
-              <label class="form-check-item"><input type="checkbox" name="scope" value="180도 차박 평탄화" /> 180도 침대형 차박 평탄화</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="롱레일 공간 확장 및 바닥재" /> 롱레일 공간 확장 및 요트 바닥재</label>
               <label class="form-check-item"><input type="checkbox" name="scope" value="나파가죽 전체 교체" /> 최고급 나파가죽 시트 교체</label>
               <label class="form-check-item"><input type="checkbox" name="scope" value="알칸타라 실내 트리밍" /> 알칸타라 헤드라이닝/트리밍</label>
-              <label class="form-check-item"><input type="checkbox" name="scope" value="롱레일 공간 확장" /> 롱레일 개조 및 바닥 요트바닥재</label>
+              <label class="form-check-item"><input type="checkbox" name="scope" value="전동 풋레스트 및 에어 안마" /> 전동 언더서포트 / 에어 안마 시스템</label>
               <label class="form-check-item"><input type="checkbox" name="scope" value="합법 구조변경 대행" /> 국토부 합법 구조변경 대행</label>
             </div>
           </div>
@@ -445,13 +450,13 @@
           </div>
 
           <button type="submit" class="btn-gold-submit">
-            시트 튜닝 견적 및 상담 신청하기 ➔
+            시트 튜닝 견적 및 상담 신청하기
           </button>
         </form>
 
         <div class="call-direct-box">
           <p style="margin-bottom:4px; font-size:0.9rem; color:var(--text);">빠른 유선 상담이나 방문 예약을 원하시나요?</p>
-          <a href="tel:+82-10-3329-5729">📞 대표 직통 유선 상담: 010-3329-5729</a>
+          <a href="tel:+82-10-3329-5729">대표 직통 유선 상담: 010-3329-5729</a>
         </div>
       </div>
     </article>
@@ -486,7 +491,6 @@
         `요청사항:\n${notes}`
       );
 
-      // 이메일 클라이언트 호출 및 알림
       window.location.href = `mailto:iru@iru.co.kr?subject=${subject}&body=${body}`;
       alert(`${name} 고객님, 시트 튜닝 상담 요청 내용이 준비되었습니다.\n이메일 발송 창이 열리면 전송 버튼을 눌러주세요.\n빠른 상담을 위해 담당자가 010-3329-5729 번호로도 연락드리겠습니다.`);
     }
