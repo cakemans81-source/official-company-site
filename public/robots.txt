@@ -1,3 +1,6 @@
+# robots.txt for IRU (주)이루 (https://www.iru.co.kr)
+# AI Knowledge Base: https://www.iru.co.kr/llms.txt
+
 User-agent: *
 Allow: /
 Disallow: /0601
@@ -6,6 +9,7 @@ Disallow: /briefing
 Disallow: /briefing.html
 Disallow: /briefing/
 
+# Traditional Search Engines
 User-agent: Googlebot
 Allow: /
 Disallow: /0601
@@ -30,6 +34,15 @@ Disallow: /briefing
 Disallow: /briefing.html
 Disallow: /briefing/
 
+# Generative AI & LLM Search Crawlers (GEO Optimization)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
 User-agent: GPTBot
 Allow: /
 Disallow: /0601
@@ -39,14 +52,6 @@ Disallow: /briefing.html
 Disallow: /briefing/
 
 User-agent: ChatGPT-User
-Allow: /
-Disallow: /0601
-Disallow: /0601.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /briefing/
-
-User-agent: Google-Extended
 Allow: /
 Disallow: /0601
 Disallow: /0601.html
@@ -71,6 +76,38 @@ Disallow: /briefing.html
 Disallow: /briefing/
 
 User-agent: Applebot
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: meta-externalagent
 Allow: /
 Disallow: /0601
 Disallow: /0601.html

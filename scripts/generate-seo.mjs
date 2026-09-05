@@ -8,7 +8,7 @@ const ROOT = path.join(__dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
 
 const BASE = company.url.replace(/\/$/, '');
-const TODAY = '2026-08-14';
+const TODAY = new Date().toISOString().split('T')[0];
 
 const NAV = [
   { href: '/about', label: '회사 소개' },
@@ -251,24 +251,89 @@ function jsonLd(page) {
   const hq = company.locations[0];
   const graph = [
     {
-      '@type': ['Organization', 'LocalBusiness'],
+      '@type': ['Organization', 'LocalBusiness', 'AutomotiveBusiness'],
       '@id': orgId(),
       name: company.brandName,
       alternateName: [company.englishName, '이루', company.legalName],
       legalName: company.legalName,
       url: `${BASE}/`,
+      logo: `${BASE}/logo.png`,
+      image: `${BASE}/og-image.jpg`,
       email: company.email,
       telephone: company.telephone,
       foundingDate: company.foundingDate,
       taxID: company.taxID,
       founder: { '@type': 'Person', name: company.founder },
       description: company.description,
+      knowsAbout: company.knowsAbout,
+      keywords: company.keywords ? company.keywords.join(', ') : '',
       address: {
         '@type': 'PostalAddress',
         streetAddress: hq.streetAddress,
         addressLocality: hq.addressLocality,
         addressRegion: hq.addressRegion,
+        postalCode: hq.postalCode || '18579',
         addressCountry: hq.addressCountry,
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: hq.geo.latitude,
+        longitude: hq.geo.longitude,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '08:30',
+          closes: '17:30',
+        },
+      ],
+      hasMap: `https://map.naver.com/p/search/${encodeURIComponent(hq.full)}`,
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: '이루(IRU) 자동차 시트 및 모빌리티 목업 제작 서비스',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '자동차 시트 디자인 목업 (Design Mock-up)',
+              description: '양산 전 외관·질감·CMF 확인을 위한 정밀 시트 디자인 목업 제작',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '차량 시트 워킹 목업 (Automotive Working Mock-up)',
+              description: '슬라이드, 리클라이닝 등 작동 메커니즘 검증용 시트 워킹 목업 제작',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '하이엔드 CMF & 정밀 스티칭 패턴',
+              description: '최고급 가죽/원단 트리밍, 정밀 자수 및 스티치 패턴 샘플 제작',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'VIP 시트 튜닝 & 리무진 커스텀',
+              description: '의전용 VIP 리무진 시트 및 모빌리티 맞춤형 프리미엄 시트 튜닝',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '로봇 및 모빌리티 워킹 목업 (Robotics Mock-up)',
+              description: '휴머노이드 및 자율주행 모빌리티 기구 구동 검증용 정밀 워킹 목업',
+            },
+          },
+        ],
       },
     },
     {
@@ -309,6 +374,7 @@ function jsonLd(page) {
 }
 
 function layout(page) {
+  const hq = company.locations[0];
   const crumbs = page.crumbs
     .map((c) => (c.href ? `<a href="${c.href}">${c.label}</a>` : `<span>${c.label}</span>`))
     .join(' / ');
@@ -336,10 +402,15 @@ function layout(page) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${page.title}</title>
   <meta name="description" content="${page.description}" />
+  <meta name="keywords" content="${company.keywords ? company.keywords.join(', ') : ''}" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="${BASE}${page.path}" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="stylesheet" href="/seo.css" />
+  <meta name="geo.region" content="KR-41" />
+  <meta name="geo.placename" content="경기도 화성시 팔탄면" />
+  <meta name="geo.position" content="${hq.geo.latitude};${hq.geo.longitude}" />
+  <meta name="ICBM" content="${hq.geo.latitude}, ${hq.geo.longitude}" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:site_name" content="IRU (주)이루" />
@@ -387,7 +458,10 @@ ${jsonLd(page)}
 }
 
 function writeRobots() {
-  const text = `User-agent: *
+  const text = `# robots.txt for IRU (주)이루 (https://www.iru.co.kr)
+# AI Knowledge Base: ${BASE}/llms.txt
+
+User-agent: *
 Allow: /
 Disallow: /0601
 Disallow: /0601.html
@@ -395,6 +469,7 @@ Disallow: /briefing
 Disallow: /briefing.html
 Disallow: /briefing/
 
+# Traditional Search Engines
 User-agent: Googlebot
 Allow: /
 Disallow: /0601
@@ -419,6 +494,15 @@ Disallow: /briefing
 Disallow: /briefing.html
 Disallow: /briefing/
 
+# Generative AI & LLM Search Crawlers (GEO Optimization)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
 User-agent: GPTBot
 Allow: /
 Disallow: /0601
@@ -428,14 +512,6 @@ Disallow: /briefing.html
 Disallow: /briefing/
 
 User-agent: ChatGPT-User
-Allow: /
-Disallow: /0601
-Disallow: /0601.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /briefing/
-
-User-agent: Google-Extended
 Allow: /
 Disallow: /0601
 Disallow: /0601.html
@@ -467,9 +543,102 @@ Disallow: /briefing
 Disallow: /briefing.html
 Disallow: /briefing/
 
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /0601
+Disallow: /0601.html
+Disallow: /briefing
+Disallow: /briefing.html
+Disallow: /briefing/
+
 Sitemap: ${BASE}/sitemap.xml
 `;
   fs.writeFileSync(path.join(PUBLIC, 'robots.txt'), text, 'utf8');
+}
+
+function writeLlmsTxt() {
+  const shortText = `# (주)이루 (IRU) — 자동차 시트 및 모빌리티 목업 전문 제작사
+
+> 경기도 화성 소재 프리미엄 자동차 시트·내장재 목업 스튜디오. 설계부터 건식 정밀가공, 우레탄 폼 가공, 하이엔드 CMF, 정밀 스티칭 봉제, 워킹 메커니즘 조립, VIP 시트 튜닝까지 원스톱으로 제작합니다.
+
+## 회사 기본 정보
+- **상호명**: 주식회사 이루 ((주)이루 / IRU)
+- **대표자**: 이광수
+- **설립연도**: 2022년
+- **사업자등록번호**: 380-87-02545
+- **슬로건**: "LET'S MAKE IT HAPPEN"
+- **대표 이메일**: ${company.email}
+- **대표 전화**: ${company.telephoneDisplay}
+- **영업시간**: ${company.openingHoursDisplay || '평일 08:30 ~ 17:30'}
+- **본사 및 1공장**: ${company.locations[0].full}
+- **2공장**: ${company.locations[1].full}
+- **공식 웹사이트**: ${BASE}/
+
+## 핵심 제작 역량
+1. **자동차 시트 및 내장재 디자인 목업 (Design Mock-up)**:
+   - 양산품과 동일한 수준의 외관·질감·품평용 시트 모델 제작
+   - 최고급 가죽 트리밍, 정밀 자수/스티칭, 고난도 CMF 패턴 구현
+2. **차량 시트 워킹 목업 (Automotive Working Mock-up)**:
+   - 슬라이드, 리클라이닝, 스위블 등 구동 메커니즘이 탑재된 개발 검증용 목업
+   - 시트 프레임 기구 설계, 메커니즘 검증 및 인간공학적 조작감 테스트용
+3. **독자적인 건식 정밀 가공 기술 (Dry Precision Machining)**:
+   - 자동차 시트 우레탄 폼(스폰지)부터 엔지니어링 플라스틱, 알루미늄까지 오차 없는 3D 정밀 가공
+4. **로보틱스 & 휴머노이드 목업 (Robotics Mock-up)**:
+   - 차세대 로봇 골격, 액추에이터 구동부, 외장 커버 및 작동 검증 모델 제작
+5. **VIP 시트 튜닝 & 리무진 커스텀 (VIP Custom Seats)**:
+   - 프리미엄 의전용 시트, 카니발/V-Class 리무진 개조 및 맞춤형 기능성 시트
+
+## 주요 프로젝트 레퍼런스
+- 현대자동차 MobED(모베드) 외관 목업
+- 기아 PBV5 전용 1·3열 시트 목업
+- 현대 WIA 디자인 모델
+- 휴머노이드 로봇 구동 워킹 모델
+- 하이엔드 소프트 트림 스티칭 샘플
+
+## 4단계 표준 제작 공정
+1. **디자인 및 3D 엔지니어링 (Design & Engineering)**: 도면 및 3D 데이터 정밀 검토 및 분할 설계
+2. **건식 정밀 가공 (Precision Machining)**: 우레탄 폼, 수지, 금속 정밀 가공
+3. **후처리 (Post-Processing)**: CMF 질감 구현, 표면 마감, 도색
+4. **디테일 조립 (Detail Assembly)**: 정밀 스티치 봉제, 기구 메커니즘 결합 및 최종 검수
+
+## 주요 페이지 안내
+- [공식 홈페이지](${BASE}/)
+- [회사 소개](${BASE}/about): (주)이루의 연혁, 설비, 핵심 경쟁력
+- [제작 공정](${BASE}/process): 4단계 정밀 목업 제작 프로세스
+- [포트폴리오](${BASE}/portfolio): 주요 제작 실적 및 갤러리
+- [자주 묻는 질문 (FAQ)](${BASE}/faq): 제작 기간, 납기, 견적 안내
+- [오시는 길 및 견적 문의](${BASE}/contact): 본사/공장 위치 및 이메일·유선 문의
+- [서비스 - 디자인 목업](${BASE}/services/design-mockup)
+- [서비스 - 워킹 목업](${BASE}/services/working-mockup)
+- [서비스 - 하이엔드 CMF](${BASE}/services/cmf)
+`;
+
+  fs.writeFileSync(path.join(PUBLIC, 'llms.txt'), shortText, 'utf8');
+  fs.writeFileSync(path.join(PUBLIC, 'llms-full.txt'), shortText, 'utf8');
 }
 
 function writeSitemap() {
@@ -502,5 +671,6 @@ for (const page of PAGES) {
 }
 writeRobots();
 writeSitemap();
+writeLlmsTxt();
 
-console.log(`SEO pages written: ${PAGES.length + 2} files (pages + robots + sitemap)`);
+console.log(`SEO & GEO files written: ${PAGES.length + 3} files (pages + robots + sitemap + llms.txt)`);
