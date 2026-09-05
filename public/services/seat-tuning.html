@@ -249,27 +249,41 @@
       box-shadow: 0 8px 24px var(--gold-glow);
     }
 
-    .call-direct-box {
-      margin-top: 24px;
-      padding: 20px;
-      border-radius: 8px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
+    .kakao-direct-box {
+      margin-top: 28px;
+      padding: 24px 20px;
+      border-radius: 12px;
+      background: rgba(254, 229, 0, 0.05);
+      border: 1px solid rgba(254, 229, 0, 0.25);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .call-direct-box a {
+    .btn-kakao-consult {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 1.1rem;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background-color: #FEE500;
+      color: #191919 !important;
+      font-size: 1.05rem;
       font-weight: 700;
-      color: var(--gold);
-      margin-top: 8px;
+      border-radius: 10px;
+      text-decoration: none !important;
+      margin-top: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(254, 229, 0, 0.25);
+      cursor: pointer;
     }
 
-    .call-direct-box a:hover {
-      text-decoration: underline;
+    .btn-kakao-consult:hover {
+      background-color: #fada00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(254, 229, 0, 0.45);
     }
 
     @media (max-width: 768px) {
@@ -415,9 +429,19 @@
           </button>
         </form>
 
-        <div class="call-direct-box">
-          <p style="margin-bottom:4px; font-size:0.9rem; color:var(--text);">빠른 유선 상담이나 방문 예약을 원하시나요?</p>
-          <a href="tel:+82-10-3329-5729">대표 직통 유선 상담: 010-3329-5729</a>
+        <div class="kakao-direct-box">
+          <p style="margin-bottom:6px; font-size:0.95rem; color:var(--text); font-weight: 500;">
+            실시간 사진 상담이나 빠른 견적 문의를 원하시나요?
+          </p>
+          <a href="https://open.kakao.com" target="_blank" rel="noopener noreferrer" class="btn-kakao-consult">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#191919" style="flex-shrink:0;">
+              <path d="M12 3c-5.523 0-10 3.582-10 8 0 2.87 1.885 5.378 4.707 6.716l-1.196 4.398c-.103.377.319.682.646.469l5.17-3.376c.222.015.446.023.673.023 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+            </svg>
+            <span>카카오톡 1:1 실시간 상담</span>
+          </a>
+          <p style="margin-top:10px; font-size:0.8rem; color:var(--text2);">
+            차량 실내 사진이나 원하시는 디자인을 카카오톡으로 편하게 남겨주세요.
+          </p>
         </div>
       </div>
     </article>
