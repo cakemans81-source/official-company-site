@@ -37,22 +37,44 @@
     ]
   },
   {
-    "id": "working-mockup",
-    "title": "Working Mock-up",
-    "subtitle": "워킹 목업",
-    "cover": "/W_M_3.jpg",
-    "description": "Fully functional working mockups with operational mechanisms, designed for development validation.",
+    "id": "automotive-working-mockup",
+    "title": "Automotive Working Mock-up",
+    "subtitle": "차량 시트 워킹 목업",
+    "cover": "/working-seat.jpg",
+    "description": "Fully functional automotive seat and interior mockups with operational mechanisms, designed for development and durability validation.",
     "projects": [
       {
-        "id": "working-seat-humanoid",
-        "title": "워킹 시트 · 휴머노이드",
-        "subtitle": "Working Seat & Humanoid",
-        "cover": "/W_M_3.jpg",
+        "id": "working-seat",
+        "title": "차량 시트 워킹 목업",
+        "subtitle": "Automotive Seat Working Mock-up",
+        "cover": "/working-seat.jpg",
         "images": [
           {
-            "src": "/W_M_3.jpg",
-            "caption": "워킹 목업 — 작동 메커니즘이 있는 개발 검증용 목업",
-            "alt": "(주)이루 워킹 목업 시트와 휴머노이드 검증"
+            "src": "/working-seat.jpg",
+            "caption": "차량 시트 워킹 목업 — 전동 리클라이닝 및 기구 구동 메커니즘 검증",
+            "alt": "(주)이루 차량 시트 워킹 목업"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "robotics-working-mockup",
+    "title": "Robotics Working Mock-up",
+    "subtitle": "로봇 워킹 목업",
+    "cover": "/working-robot.jpg",
+    "description": "High-precision robotics and humanoid mechanism mockups engineered for kinematics, actuator testing, and physical interaction.",
+    "projects": [
+      {
+        "id": "humanoid-robot",
+        "title": "로봇 워킹 목업",
+        "subtitle": "Robotics Working Mock-up",
+        "cover": "/working-robot.jpg",
+        "images": [
+          {
+            "src": "/working-robot.jpg",
+            "caption": "로봇 워킹 목업 — 휴머노이드 골격 및 액추에이터 구동 메커니즘 검증",
+            "alt": "(주)이루 로봇 워킹 목업"
           }
         ]
       }

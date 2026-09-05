@@ -79,7 +79,7 @@ const PAGES = [
     description: '(주)이루 포트폴리오. 디자인 목업, 워킹 목업, 하이엔드 CMF·패턴. 현대 MobED 외관 목업, 기아 PBV5 전용 시트 이미지가 사이트 갤러리에 있습니다.',
     h1: '디자인 목업, 워킹 목업, CMF 샘플을 제작합니다',
     kicker: 'Portfolio',
-    lead: '갤러리는 세 카테고리입니다. 디자인 목업, 워킹 목업, 하이엔드 CMF &amp; 패턴. 홈에서 사진을 크게 볼 수 있습니다.',
+    lead: '갤러리는 네 카테고리입니다. 디자인 목업, 차량 시트 워킹 목업, 로봇 워킹 목업, 하이엔드 CMF &amp; 패턴. 홈에서 사진을 크게 볼 수 있습니다.',
     crumbs: [{ href: '/', label: '홈' }, { label: '포트폴리오' }],
     body: `
       <div class="card-list">
@@ -92,10 +92,18 @@ const PAGES = [
           </div>
         </article>
         <article class="card">
-          <img src="/W_M_3.jpg" alt="(주)이루 워킹 목업 — 작동 검증용 시트 목업" />
+          <img src="/working-seat.jpg" alt="(주)이루 차량 시트 워킹 목업 — 구동 메커니즘 검증용" />
           <div class="card-body">
-            <h2>Working Mock-up — 워킹 목업</h2>
-            <p>작동 메커니즘이 있는 개발 검증용 목업입니다.</p>
+            <h2>Automotive Working Mock-up — 차량 시트 워킹 목업</h2>
+            <p>작동 메커니즘이 있는 개발 검증용 차량 시트 목업입니다.</p>
+            <p><a href="/services/working-mockup">워킹 목업 설명</a></p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/working-robot.jpg" alt="(주)이루 로봇 워킹 목업 — 휴머노이드 골격 및 액추에이터 검증" />
+          <div class="card-body">
+            <h2>Robotics Working Mock-up — 로봇 워킹 목업</h2>
+            <p>정밀 로보틱스 및 휴머노이드 기구 구동 검증용 워킹 목업입니다.</p>
             <p><a href="/services/working-mockup">워킹 목업 설명</a></p>
           </div>
         </article>
@@ -113,6 +121,7 @@ const PAGES = [
         <li>현대 WIA 디자인 모델</li>
         <li>현대자동차 MobED — 외관 목업</li>
         <li>기아 PBV5 전용 시트 (1·3열)</li>
+        <li>로봇 워킹 목업 (휴머노이드)</li>
         <li>정밀 스티칭 디테일</li>
       </ul>
       <p>사진은 <a href="/#gallery">홈 포트폴리오</a>에서 확인하세요.</p>
