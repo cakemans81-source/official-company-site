@@ -59,6 +59,41 @@
     ]
   },
   {
+    "id": "seat-exhibition",
+    "title": "Seat Exhibition Bucks",
+    "subtitle": "시트 전시 벅",
+    "cover": "/iru-seat-exhibit-installation.webp",
+    "description": "실제 극장 설치 사례와 별도로 제작한 AI 콘셉트 이미지를 소개합니다.",
+    "projects": [
+      {
+        "id": "theater-seat-exhibit",
+        "title": "극장용 시트 전시 벅",
+        "subtitle": "Theater Seat Exhibition Buck",
+        "cover": "/iru-seat-exhibit-installation.webp",
+        "images": [
+          {
+            "src": "/iru-seat-exhibit-installation.webp",
+            "caption": "극장용 시트 전시 벅 — 실제 현장 설치 사진",
+            "alt": "극장에 설치된 시트 전시 벅 4대"
+          }
+        ]
+      },
+      {
+        "id": "seat-exhibit-concept",
+        "title": "시트 전시 벅 · AI 콘셉트 이미지",
+        "subtitle": "Seat Exhibition Buck · AI Concept Image",
+        "cover": "/iru-seat-exhibit-concept.webp",
+        "images": [
+          {
+            "src": "/iru-seat-exhibit-concept.webp",
+            "caption": "AI 콘셉트 이미지 — 시트 장착 연출 예시이며 실제 납품 사진이 아닙니다.",
+            "alt": "검은 카펫 베이스에 시트를 장착한 AI 콘셉트 이미지"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "robotics-working-mockup",
     "title": "Robotics Working Mock-up",
     "subtitle": "로봇 워킹 목업",

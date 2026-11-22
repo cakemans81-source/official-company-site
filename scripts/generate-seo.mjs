@@ -79,7 +79,7 @@ const PAGES = [
     description: '(주)이루 포트폴리오. 디자인 목업, 워킹 목업, 하이엔드 CMF·패턴. 현대 MobED 외관 목업, 기아 PBV5 전용 시트 이미지가 사이트 갤러리에 있습니다.',
     h1: '디자인 목업, 워킹 목업, CMF 샘플을 제작합니다',
     kicker: 'Portfolio',
-    lead: '갤러리는 네 카테고리입니다. 디자인 목업, 차량 시트 워킹 목업, 로봇 워킹 목업, 하이엔드 CMF &amp; 패턴. 홈에서 사진을 크게 볼 수 있습니다.',
+    lead: '디자인 목업, 차량 시트 워킹 목업, 시트 전시 벅, 로봇 워킹 목업, 하이엔드 CMF &amp; 패턴을 소개합니다. 홈 갤러리에서 사진을 크게 볼 수 있습니다.',
     crumbs: [{ href: '/', label: '홈' }, { label: '포트폴리오' }],
     body: `
       <div class="card-list">
@@ -113,6 +113,23 @@ const PAGES = [
             <h2>High-end CMF &amp; Patterning</h2>
             <p>컬러·소재·마감과 정밀 스티칭·패턴 샘플입니다.</p>
             <p><a href="/services/cmf">CMF 설명</a></p>
+          </div>
+        </article>
+      </div>
+      <h2>시트 전시 벅</h2>
+      <div class="card-list">
+        <article class="card">
+          <img src="/iru-seat-exhibit-installation.webp" alt="극장에 설치된 시트 전시 벅 4대" loading="lazy" />
+          <div class="card-body">
+            <h3>극장용 시트 전시 벅</h3>
+            <p>시트 4석을 전시 벅에 장착한 실제 현장 설치 사진입니다.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/iru-seat-exhibit-concept.webp" alt="시트 전시 벅 AI 콘셉트 이미지" loading="lazy" />
+          <div class="card-body">
+            <h3>시트 전시 벅 · AI 콘셉트 이미지</h3>
+            <p>시트 장착 연출 예시로, 실제 납품 사진이 아닙니다.</p>
           </div>
         </article>
       </div>
